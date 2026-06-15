@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volné prostory a Kontakt - Obchodní Dům</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body {
+            background-image: linear-gradient(rgba(17, 24, 39, 0.85), rgba(17, 24, 39, 0.85)), url('cesta-k-vasi-fotce-budovy.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between">
+
+    <main class="max-w-4xl mx-auto px-4 py-12 w-full">
+        <div class="mb-8">
+            <a href="index.html" class="inline-flex items-center text-sm font-medium tracking-wider text-amber-500 hover:text-amber-400 uppercase transition-colors">
+                &larr; Zpět na přehled
+            </a>
+        </div>
+
+        <section id="kontakt" class="bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl p-8 mb-12 shadow-xl">
+            <h2 class="text-2xl font-light tracking-widest uppercase mb-6 text-white border-b border-gray-800 pb-3">
+                Informace & Správa budovy
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-300">
+                <div>
+                    <p class="text-xs tracking-wider uppercase text-amber-500 font-semibold mb-1">Manažer pronájmů</p>
+                    <p class="text-lg font-medium text-white">Jméno Příjmení</p>
+                    <p class="mt-2">Telefon: <a href="tel:+420123456789" class="hover:text-amber-400">+420 123 456 789</a></p>
+                    <p>E-mail: <a href="mailto:sprava@obchodnidum.cz" class="hover:text-amber-400">sprava@obchodnidum.cz</a></p>
+                </div>
+                <div>
+                    <p class="text-xs tracking-wider uppercase text-amber-500 font-semibold mb-1">Adresa objektu</p>
+                    <p class="text-lg font-medium text-white">Obchodní Dům Hodonín</p>
+                    <p class="mt-2">Ulice a číslo popisné</p>
+                    <p>695 01 Hodonín</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl p-8 shadow-xl">
+            <h2 class="text-2xl font-light tracking-widest uppercase mb-6 text-white border-b border-gray-800 pb-3">
+                Volné prostory k pronájmu
+            </h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-gray-800 text-xs tracking-wider uppercase text-gray-400">
+                            <th class="py-3 px-4">Prostor / Umístění</th>
+                            <th class="py-3 px-4">Plocha</th>
+                            <th class="py-3 px-4">Stav</th>
+                            <th class="py-3 px-4 text-right">Více informací</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-300 divide-y divide-gray-800/50">
+                        <tr class="hover:bg-gray-800/30 transition-colors">
+                            <td class="py-4 px-4 font-medium text-white">Prostor A-12 (Přízemí)</td>
+                            <td class="py-4 px-4">45 m²</td>
+                            <td class="py-4 px-4">
+                                <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-green-500/10 text-green-400 border border-green-500/20">Volný ihned</span>
+                            </td>
+                            <td class="py-4 px-4 text-right text-sm">
+                                <a href="mailto:sprava@obchodnidum.cz?subject=Poptavka: Prostor A-12" class="text-amber-500 hover:underline">Kontaktovat &rarr;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full bg-gray-900/80 backdrop-blur-md py-6 text-center text-sm text-gray-400 border-t border-gray-800 mt-12">
+        <p>&copy; 2026 Obchodní Dům. Bezpečný statický web.</p>
+    </footer>
+
+</body>
+</html>
