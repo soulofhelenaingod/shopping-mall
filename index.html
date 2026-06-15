@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obchodní Dům</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body {
+            background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('cesta-k-vasi-fotce-budovy.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        .sphere-card {
+            border-radius: 50%;
+            aspect-ratio: 1 / 1;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between">
+
+    <main class="max-w-7xl mx-auto px-4 py-12 w-full">
+        <header class="text-center mb-16">
+            <h1 class="text-3xl md:text-5xl font-light tracking-widest text-white uppercase">Obchodní Dům</h1>
+            <div class="h-0.5 w-24 bg-amber-500 mx-auto mt-4"></div>
+        </header>
+
+        <div id="grid-sfer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-items-center">
+            </div>
+    </main>
+
+    <footer class="w-full bg-gray-900/80 backdrop-blur-md py-6 text-center text-sm text-gray-400 border-t border-gray-800">
+        <p>&copy; 2026 Obchodní Dům. Všechna práva vyhrazena. Zabezpečeno přes Cloudflare.</p>
+    </footer>
+
+    <script>
+        const prodejny = [
+            { nazev: "ALBERT", logo: "albert.png", odkaz: "https://www.albert.cz" },
+            { nazev: "DELIKANA", logo: "delikana.png", odkaz: "https://www.delikana.cz" },
+            { nazev: "PEPCO", logo: "pepco.png", odkaz: "https://www.pepco.cz" },
+            { nazev: "IRO-GYM", logo: "iro-gym.png", odkaz: "" },
+            { nazev: "VOLNÉ PROSTORY", logo: "ikona-pronajem.png", odkaz: "pronajem.html", interní: true },
+            { nazev: "INFORMACE & KONTAKT", logo: "ikona-info.png", odkaz: "pronajem.html#kontakt", interní: true }
+        ];
+
+        const gridContainer = document.getElementById('grid-sfer');
+
+        prodejny.forEach(item => {
+            const wrapper = document.createElement('div');
+            wrapper.className = "flex flex-col items-center group w-32 sm:w-40";
+            let innerHTML = '';
+            
+            if (item.interní) {
+                innerHTML = `
+                    <a href="${item.odkaz}" class="sphere-card w-full bg-amber-600/90 hover:bg-amber-500 flex items-center justify-center p-6 shadow-xl border border-amber-400/30 hover:scale-105 hover:shadow-amber-500/20 group-hover:rotate-3">
+                        <span class="text-center text-xs font-bold tracking-wider">NAVIGACE</span>
+                    </a>
+                `;
+            } else if (item.odkaz) {
+                innerHTML = `
+                    <a href="${item.odkaz}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full bg-gray-800/60 hover:bg-gray-700/80 backdrop-blur-sm flex items-center justify-center p-6 shadow-lg border border-gray-700/50 hover:scale-105 hover:shadow-xl hover:border-gray-500">
+                        <span class="text-center text-xs font-bold">${item.nazev[0]}</span>
+                    </a>
+                `;
+            } else {
+                innerHTML = `
+                    <div class="sphere-card w-full bg-gray-900/40 backdrop-blur-sm flex items-center justify-center p-6 shadow-inner border border-gray-800/30 opacity-60 cursor-default">
+                        <span class="text-center text-xs font-bold">${item.nazev[0]}</span>
+                    </div>
+                `;
+            }
+
+            innerHTML += `
+                <span class="mt-4 text-xs sm:text-sm font-medium tracking-widest text-gray-300 text-center uppercase group-hover:text-white transition-colors duration-300">
+                    ${item.nazev}
+                </span>
+            `;
+
+            wrapper.innerHTML = innerHTML;
+            gridContainer.appendChild(wrapper);
+        });
+    </script>
+</body>
+</html>
