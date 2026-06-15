@@ -36,13 +36,37 @@
     </footer>
 
     <script>
+        // Kompletní a opravený seznam 29 položek přesně podle vašeho textu
         const prodejny = [
-            { nazev: "ALBERT", logo: "albert.png", odkaz: "https://www.albert.cz" },
-            { nazev: "DELIKANA", logo: "delikana.png", odkaz: "https://www.delikana.cz" },
-            { nazev: "PEPCO", logo: "pepco.png", odkaz: "https://www.pepco.cz" },
-            { nazev: "IRO-GYM", logo: "iro-gym.png", odkaz: "" },
-            { nazev: "VOLNÉ PROSTORY", logo: "ikona-pronajem.png", odkaz: "pronajem.html", interní: true },
-            { nazev: "INFORMACE & KONTAKT", logo: "ikona-info.png", odkaz: "pronajem.html#kontakt", interní: true }
+            { nazev: "SUPERMARKET", logo: "albert.png", odkaz: "https://www.albert.cz/nase-prodejny/supermarket-hodonin-masarykovo-nam" },
+            { nazev: "CUKRÁRNA", logo: "delikana.png", odkaz: "https://www.facebook.com/hodonindelikana#" },
+            { nazev: "RESTAURACE", logo: "poe poe.jpg", odkaz: "https://www.poe-poe.cz/poe-poe-hodonin" },
+            { nazev: "LÉKÁRNA", logo: "zdravi3v1.cz.png", odkaz: "https://www.zdravi3v1.cz/contact-2/" },
+            { nazev: "MÓDA", logo: "coccodrillo.jpg", odkaz: "https://cz.coccodrillo.eu/" },
+            { nazev: "MÓDA", logo: "vigoss.png", odkaz: "https://www.vigossjeans.cz/" },
+            { nazev: "DĚTSKÁ MÓDA", logo: "calzanatta.png", odkaz: "https://www.instagram.com/calzanatta?igsh=bGo2c3I2cmxzbmVh" },
+            { nazev: "POSILOVNA", logo: "iro-gym.png", odkaz: "" }, // Bez odkazu
+            { nazev: "ALPINNING", logo: "alpining hodonin.jpg", odkaz: "https://www.facebook.com/AlpinningHodonin/?locale=cs_CZ" },
+            { nazev: "SOLÁRIUM", logo: "puresun.png", odkaz: "https://puresun.cz/hodonin/" },
+            { nazev: "NEHTY", logo: "moon.jpg", odkaz: "https://www.facebook.com/people/Moon-Nails-Ateli%C3%A9r/61573249224680/" },
+            { nazev: "SMĚNÁRNA", logo: "smenarna.png", odkaz: "" }, // Bez odkazu
+            { nazev: "FINANCE", logo: "partners.png", odkaz: "https://www.partnersbanka.cz/detail-pobocky/hodonin-masarykovo-nam" },
+            { nazev: "FINANCE", logo: "4fin.png", odkaz: "https://www.4fin.cz/" },
+            { nazev: "STAVEBNÍ SPOŘITELNA", logo: "csob stavebni sporitelna.jpg", odkaz: "https://www.banky.cz/banky/csob-stavebni-sporitelna/pobocky/masarykovo-nam-257-hodonin-69501/" },
+            { nazev: "BANKOMAT", logo: "bankomat komercni banky.jpg", odkaz: "https://www.kb.cz/cs/pobocky-a-bankomaty/bankomaty/hodonin-masarykovo-nam" },
+            { nazev: "ADVOKÁT", logo: "advokat.png", odkaz: "" }, // Bez odkazu (ak-moravek.cz v textu nebylo jako odkaz)
+            { nazev: "KATASTRÁLNÍ ÚŘAD", logo: "cuzk.png", odkaz: "https://cuzk.gov.cz/kp/hodonin" },
+            { nazev: "ŠPERKY", logo: "sperky a bizuterie.png", odkaz: "" }, // Bez odkazu
+            { nazev: "PPL BOX", logo: "ppl box.png", odkaz: "https://www.ppl.cz/vydejni-mista/hodonin-masarykovo-namesti-16_4307977" },
+            { nazev: "Z-BOX", logo: "zasillkovna.png", odkaz: "https://www.zasilkovna.cz/pobocky/hodonin-masarykovo-namesti-257" },
+            { nazev: "ALZA BOX", logo: "alza box.png", odkaz: "https://www.alza.cz/alzabox-hodonin-(iro-obchodni-dum)-1009355-ps.htm" },
+            { nazev: "ALLEGRO BOX", logo: "allegro one box.png", odkaz: "https://onedelivery.cz/mapa-boxu-a-vydejnich-mist" },
+            { nazev: "GLS BOX", logo: "gls box.png", odkaz: "https://ps-maps.gls-czech.cz/?tdetail=2&p=hodonin&header=0&lng=cs" },
+            { nazev: "CBD", logo: "canna house.png", odkaz: "" }, // Bez odkazu
+            { nazev: "CBD", logo: "hemp box.png", odkaz: "https://www.facebook.com/cbdhempbox" },
+            // Tyto dvě poslední sféry jsou vaše navigační sféry na Page 2
+            { nazev: "INFORMACE", logo: "informace.png", odkaz: "pronajem.html#kontakt", interní: true },
+            { nazev: "VOLNÉ PROSTORY", logo: "k pronajmu.png", odkaz: "pronajem.html", interní: true }
         ];
 
         const gridContainer = document.getElementById('grid-sfer');
@@ -53,25 +77,29 @@
             let innerHTML = '';
             
             if (item.interní) {
+                // Navigační sféry pro Informace a Volné prostory (Page 2)
                 innerHTML = `
                     <a href="${item.odkaz}" class="sphere-card w-full bg-amber-600/90 hover:bg-amber-500 flex items-center justify-center p-6 shadow-xl border border-amber-400/30 hover:scale-105 hover:shadow-amber-500/20 group-hover:rotate-3">
-                        <span class="text-center text-xs font-bold tracking-wider">NAVIGACE</span>
+                        <img src="${item.logo}" alt="${item.nazev}" class="max-w-full max-h-full object-contain filter brightness-0 invert">
                     </a>
                 `;
             } else if (item.odkaz) {
+                // Aktivní klikací sféry obchodů, které vedou na externí linky
                 innerHTML = `
                     <a href="${item.odkaz}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full bg-gray-800/60 hover:bg-gray-700/80 backdrop-blur-sm flex items-center justify-center p-6 shadow-lg border border-gray-700/50 hover:scale-105 hover:shadow-xl hover:border-gray-500">
-                        <span class="text-center text-xs font-bold">${item.nazev[0]}</span>
+                        <img src="${item.logo}" alt="${item.nazev}" class="max-w-full max-h-full object-contain">
                     </a>
                 `;
             } else {
+                // Neaktivní sféry pro obchody bez odkazu (např. POSILOVNA - Iro-gym, SMĚNÁRNA...)
                 innerHTML = `
                     <div class="sphere-card w-full bg-gray-900/40 backdrop-blur-sm flex items-center justify-center p-6 shadow-inner border border-gray-800/30 opacity-60 cursor-default">
-                        <span class="text-center text-xs font-bold">${item.nazev[0]}</span>
+                        <img src="${item.logo}" alt="${item.nazev}" class="max-w-full max-h-full object-contain grayscale">
                     </div>
                 `;
             }
 
+            // Popisek pod sférou (Velká tiskací písmena ze sloupce "Co to je")
             innerHTML += `
                 <span class="mt-4 text-xs sm:text-sm font-medium tracking-widest text-gray-300 text-center uppercase group-hover:text-white transition-colors duration-300">
                     ${item.nazev}
