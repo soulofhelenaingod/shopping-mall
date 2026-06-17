@@ -1,113 +1,109 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Obchodní dům Hodonín</title>
-  <style>
-    /* ZÁKLADNÍ RESET A POZADÍ */
-    body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: linear-gradient(rgba(26, 32, 44, 0.75), rgba(26, 32, 44, 0.75)), url('pozadi.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: #ffffff;
-    min-height: 100vh;
-}
-
-    /* KONTEJNER PRO MŘÍŽKU SFÉR */
-    #mall-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 40px 20px;
-      width: 100%;
-      max-width: 1200px;
-      padding: 40px;
-      box-sizing: border-box;
-    }
-
-    /* ODKAZ A OBAL SFÉRY (BEZ POZADÍ A KRUHŮ) */
-    .sphere-link {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: #ffffff;
-      background: transparent; /* Zásadní: žádné pozadí */
-      border: none;
-      outline: none;
-      cursor: pointer;
-    }
-
-    /* SAMOTNÝ OBRÁZEK SFÉRY */
-    .sphere-image {
-      width: 140px;
-      height: 140px;
-      object-fit: contain;
-      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
-      /* Přirozený stín pod 3D objektem ignorující průhledné pozadí .webp */
-      filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.5));
-    }
-
-    /* EFEKT PO NAJETÍ MYŠÍ */
-    .sphere-link:hover .sphere-image {
-      transform: translateY(-8px) scale(1.05);
-      filter: drop-shadow(0px 15px 20px rgba(0, 0, 0, 0.8));
-    }
-
-    /* TEXTOVÝ POPISEK POD SFÉROU */
-    .sphere-label {
-      margin-top: 15px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-align: center;
-      opacity: 0.8;
-      transition: opacity 0.3s ease;
-    }
-
-    .sphere-link:hover .sphere-label {
-      opacity: 1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obchodní Dům | Data-Driven Portal</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body {
+            /* Zde je oprava: tmavší filtr (0.9), který ztlumí jasný obrázek */
+            background-image: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('pozadi.webp');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        /* Sféra je nyní tvořena přímo samotným logem */
+        .sphere-card {
+            border-radius: 50%;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: transparent;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sphere-card:hover {
+            transform: scale(1.1) translateY(-4px);
+            box-shadow: 0 15px 30px rgba(245,158,11,0.3);
+        }
+    </style>
 </head>
-<body>
+<body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between">
 
-  <div id="mall-grid"></div>
+    <main class="max-w-7xl mx-auto px-4 py-8 w-full">
+        <div id="grid-sfer" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 sm:gap-8 justify-items-center">
+            <div class="text-gray-500 animate-pulse col-span-full text-center">Inicializace asynchronní datové pipeline...</div>
+        </div>
+    </main>
 
-  <script>
-    const gridContainer = document.getElementById('mall-grid');
+    <script>
+        async function fetchAndRenderGrid() {
+            const gridContainer = document.getElementById('grid-sfer');
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) throw new Error('Chyba při inicializaci síťového požadavku.');
+                
+                const prodejny = await response.json();
+                gridContainer.innerHTML = '';
 
-    /* ➖ NAČÍTÁNÍ DAT ZE SAMOSTATNÉHO SOUBORU DATA.JSON */
-    fetch('data.json')
-      .then(response => response.json())
-      .then(stores => {
-        stores.forEach(store => {
-          // Vytvoření odkazového obalu
-          const anchor = document.createElement('a');
-          anchor.className = 'sphere-link';
-          anchor.href = store.link ? store.link : '#';
-          
-          // Otevření externích odkazů v novém okně
-          if (store.link && !store.isInternal && store.link !== '#') {
-            anchor.target = '_blank';
-            anchor.rel = 'noopener noreferrer';
-          }
+                prodejny.forEach(item => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = "flex flex-col items-center group w-24 sm:w-32";
+                    let innerHTML = '';
+                    
+                    // Obrázky nyní využívají w-full h-full a object-cover pro dokonalý kruhový výřez loga
+                    if (item.isInternal) {
+                        innerHTML = `
+                            <a href="${item.link}" class="sphere-card w-full border border-amber-500/30 hover:border-amber-400">
+                                <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all">
+                            </a>
+                        `;
+                    } else if (item.link) {
+                        innerHTML = `
+                            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full border border-gray-700/30 hover:border-gray-500">
+                                <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover">
+                            </a>
+                        `;
+                    } else {
+                        innerHTML = `
+                            <div class="sphere-card w-full border border-gray-800/20 opacity-40 cursor-default">
+                                <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover grayscale">
+                            </div>
+                        `;
+                    }
 
-          // Sestavení HTML obsahu s relativní cestou do složky assets/logos
-          anchor.innerHTML = `
-            <img src="assets/logos/${store.logo}" alt="Logo ${store.type}" class="sphere-image" loading="lazy">
-            <span class="sphere-label">${store.type}</span>
-          `;
+                    innerHTML += `
+                        <span class="mt-3 text-[10px] sm:text-xs font-medium tracking-wider text-gray-400 text-center uppercase group-hover:text-white transition-colors duration-300 block w-full truncate px-1">
+                            ${item.type}
+                        </span>
+                    `;
 
-          gridContainer.appendChild(anchor);
+                    wrapper.innerHTML = innerHTML;
+                    gridContainer.appendChild(wrapper);
+                });
+            } catch (error) {
+                console.error('Data Pipeline Error:', error);
+                gridContainer.innerHTML = `<div class="text-red-400 col-span-full text-center">Chyba datového streamu: ${error.message}</div>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchAndRenderGrid);
+
+        // SECURE LAYER
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (
+                e.key === 'F12' ||
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+                (e.ctrlKey && e.key === 'U')
+            ) {
+                e.preventDefault();
+                return false;
+            }
         });
-      })
-      .catch(error => console.error('Chyba při načítání JSON dat:', error));
-  </script>
+    </script>
 </body>
 </html>
