@@ -15,20 +15,18 @@
         }
         /* Sféra je nyní tvořena přímo samotným logem */
         .sphere-card {
-            border-radius: 50%;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: transparent;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .sphere-card:hover {
-            transform: scale(1.1) translateY(-4px);
-            box-shadow: 0 15px 30px rgba(245,158,11,0.3);
-        }
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sphere-card:hover {
+    transform: scale(1.1) translateY(-4px);
+}
     </style>
 </head>
 <body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between">
