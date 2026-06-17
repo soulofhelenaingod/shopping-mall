@@ -1,4 +1,4 @@
-const stores = [
+[
       { "id": 1, "type": "SUPERMARKET", "logo": "1albert.webp", "link": "https://www.albert.cz/nase-prodejny/supermarket-hodonin-masarykovo-nam", "tags": ["potraviny", "nakupy"] },
       { "id": 2, "type": "CUKRÁRNA", "logo": "1albert.webp", "link": "https://www.facebook.com/hodonindelikana#", "tags": ["gastro", "sladke"] },
       { "id": 3, "type": "RESTAURACE", "logo": "1albert.webp", "link": "https://www.poe-poe.cz/poe-poe-hodonin", "tags": ["gastro", "jidlo"] },
@@ -29,4 +29,4 @@ const stores = [
       { "id": 28, "type": "VOLNÉ PROSTORY", "logo": "1albert.webp", "link": "pronajem.html", "tags": ["internal"], "isInternal": true },
       { "id": 29, "type": "NOVÁ PRODEJNA A", "logo": "1albert.webp", "link": "", "tags": ["test"] },
       { "id": 30, "type": "NOVÁ PRODEJNA B", "logo": "1albert.webp", "link": "", "tags": ["test"] }
-    ];
+    ]
