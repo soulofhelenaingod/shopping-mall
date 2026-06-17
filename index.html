@@ -3,102 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Obchodní Dům | Data-Driven Portal</title>
+    <title>Obchodní Dům | Data-Driven Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         body {
-            /* Zde je oprava: tmavší filtr (0.9), který ztlumí jasný obrázek */
             background-image: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('pozadi.webp');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
         }
-        /* Sféra je nyní tvořena přímo samotným logem */
         .sphere-card {
-    border-radius: 50%;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: transparent;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.sphere-card:hover {
-    transform: scale(1.1) translateY(-4px);
-}
+            border-radius: 50%;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sphere-card:hover {
+            transform: scale(1.1) translateY(-4px);
+        }
+        /* Tetrisové bloky */
+        .tetris-block {
+            border-radius: 1rem;
+            padding: 1.25rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .tetris-gastro { background: rgba(239, 68, 68, 0.07); border-color: rgba(239, 68, 68, 0.15); }
+        .tetris-moda { background: rgba(168, 85, 247, 0.07); border-color: rgba(168, 85, 247, 0.15); }
+        .tetris-sport { background: rgba(34, 197, 94, 0.07); border-color: rgba(34, 197, 94, 0.15); }
+        .tetris-finance { background: rgba(59, 130, 246, 0.07); border-color: rgba(59, 130, 246, 0.15); }
+        .tetris-box { background: rgba(245, 158, 11, 0.07); border-color: rgba(245, 158, 11, 0.15); }
+        .tetris-default { background: rgba(255, 255, 255, 0.03); }
     </style>
 </head>
 <body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between">
 
     <main class="max-w-7xl mx-auto px-4 py-8 w-full">
-        <div id="grid-sfer" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 sm:gap-8 justify-items-center">
-            <div class="text-gray-500 animate-pulse col-span-full text-center">Inicializace asynchronní datové pipeline...</div>
+        <div id="tetris-container" class="flex flex-col gap-8 w-full">
+            <div class="text-gray-500 animate-pulse text-center w-full">Inicializace asynchronní tetrisové pipeline...</div>
         </div>
     </main>
 
     <script>
-        async function fetchAndRenderGrid() {
-            const gridContainer = document.getElementById('grid-sfer');
+        // Opravené přesné mapování podle tvých tagů v data.json
+        const kategorieConfig = {
+            'potraviny': { nazev: 'Gastro & Potraviny', trida: 'tetris-gastro' },
+            'gastro': { nazev: 'Gastro & Potraviny', trida: 'tetris-gastro' },
+            'obleceni': { nazev: 'Móda & Styl', trida: 'tetris-moda' },
+            'nakupy': { nazev: 'Móda & Styl', trida: 'tetris-moda' },
+            'sport': { nazev: 'Sport & Fitness', trida: 'tetris-sport' },
+            'sluzby': { nazev: 'Služby & Úřady', trida: 'tetris-sport' },
+            'urad': { nazev: 'Služby & Úřady', trida: 'tetris-sport' },
+            'finance': { nazev: 'Finanční Služby', trida: 'tetris-finance' },
+            'box': { nazev: 'Poštovní Boxy', trida: 'tetris-box' },
+            'internal': { nazev: 'Informace OD', trida: 'tetris-default' }
+        };
+
+        async function fetchAndRenderTetris() {
+            const container = document.getElementById('tetris-container');
             try {
                 const response = await fetch('data.json');
                 if (!response.ok) throw new Error('Chyba při inicializaci síťového požadavku.');
                 
                 const prodejny = await response.json();
-                gridContainer.innerHTML = '';
+                container.innerHTML = '';
 
+                const skupiny = {};
                 prodejny.forEach(item => {
-                    const wrapper = document.createElement('div');
-                    wrapper.className = "flex flex-col items-center group w-24 sm:w-32";
-                    let innerHTML = '';
+                    const hlavniTag = item.tags && item.tags[0] ? item.tags[0] : 'default';
+                    const config = kategorieConfig[hlavniTag] || { nazev: 'Ostatní', trida: 'tetris-default' };
                     
-                    // Obrázky nyní využívají w-full h-full a object-cover pro dokonalý kruhový výřez loga
-                    if (item.isInternal) {
-                        innerHTML = `
-                            <a href="${item.link}" class="sphere-card w-full">
-                                <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all">
-                            </a>
-                        `;
-                    } else if (item.link) {
-                        innerHTML = `
-                            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full">
-                                <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover">
-                            </a>
-                        `;
-                    } else {
-                        innerHTML = `
-                            <div class="sphere-card w-full border border-gray-800/20 opacity-40 cursor-default">
-                                <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover grayscale">
-                            </div>
-                        `;
+                    if (!skupiny[config.nazev]) {
+                        skupiny[config.nazev] = { trida: config.trida, polozky: [] };
                     }
+                    skupiny[config.nazev].polozky.push(item);
+                });
 
-                    innerHTML += `
-                        <span class="mt-1 text-xs sm:text-sm font-semibold tracking-wide text-gray-200 text-center uppercase group-hover:text-amber-400 transition-colors duration-300 block w-full whitespace-normal break-words px-0.5" style="font-family: 'Inter', sans-serif; min-height: 2.5rem; display: flex; align-items: flex-start; justify-content: center;">
-                            ${item.type}
-                        </span>
+                Object.keys(skupiny).forEach(nazevSkupiny => {
+                    const skupina = skupiny[nazevSkupiny];
+                    const blockWrapper = document.createElement('div');
+                    blockWrapper.className = `tetris-block ${skupina.trida}`;
+                    
+                    let blockHTML = `
+                        <h2 class="text-xs font-bold tracking-widest text-gray-400 uppercase mb-4 px-1" style="font-family: 'Inter', sans-serif;">${nazevSkupiny}</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 justify-items-center">
                     `;
 
-                    wrapper.innerHTML = innerHTML;
-                    gridContainer.appendChild(wrapper);
+                    skupina.polozky.forEach(item => {
+                        let innerHTML = '';
+                        if (item.isInternal) {
+                            innerHTML = `<a href="${item.link}" class="sphere-card w-full"><img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all"></a>`;
+                        } else if (item.link) {
+                            innerHTML = `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full"><img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover"></a>`;
+                        } else {
+                            innerHTML = `<div class="sphere-card w-full opacity-40 cursor-default"><img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover grayscale"></div>`;
+                        }
+
+                        innerHTML += `
+                            <span class="mt-1 text-xs sm:text-sm font-semibold tracking-wide text-gray-200 text-center uppercase group-hover:text-amber-400 transition-colors duration-300 block w-full whitespace-normal break-words px-0.5" style="font-family: 'Inter', sans-serif; min-height: 2.5rem; display: flex; align-items: flex-start; justify-content: center;">
+                                ${item.type}
+                            </span>
+                        `;
+
+                        blockHTML += `<div class="flex flex-col items-center group w-24 sm:w-32">${innerHTML}</div>`;
+                    });
+
+                    blockHTML += `</div>`;
+                    blockWrapper.innerHTML = blockHTML;
+                    container.appendChild(blockWrapper);
                 });
+
             } catch (error) {
-                console.error('Data Pipeline Error:', error);
-                gridContainer.innerHTML = `<div class="text-red-400 col-span-full text-center">Chyba datového streamu: ${error.message}</div>`;
+                console.error('Tetris Pipeline Error:', error);
+                container.innerHTML = `<div class="text-red-400 text-center">Chyba datového streamu: ${error.message}</div>`;
             }
         }
 
-        document.addEventListener('DOMContentLoaded', fetchAndRenderGrid);
+        document.addEventListener('DOMContentLoaded', fetchAndRenderTetris);
 
         // SECURE LAYER
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
-            if (
-                e.key === 'F12' ||
-                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
-                (e.ctrlKey && e.key === 'U')
-            ) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
                 e.preventDefault();
                 return false;
             }
