@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obchodní Dům | Data-Driven Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -12,12 +12,6 @@
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
-            overflow: hidden; /* This is critical: no scrolling */
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
         .sphere-card {
             border-radius: 50%;
@@ -30,153 +24,78 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .sphere-card:hover {
-            transform: scale(1.1);
-        }
-
-        /* Tightly packed grid container */
-        #puzzle-grid {
-            display: grid;
-            gap: 1px; /* Very small gap for the puzzle line effect */
-            grid-template-columns: repeat(6, 1fr);
-            grid-auto-rows: minmax(auto, 16.66vh); /* Adjust based on viewport height */
-            width: 95vw;
-            height: 90vh; /* Keeps it on one screen */
-            max-width: 1400px;
-        }
-
-        /* Compact puzzle pieces */
-        .puzzle-piece {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2px;
-            backdrop-filter: blur(2px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            position: relative;
-        }
-
-        /* interlocking puzzle 'tabs' (subtle indicators) */
-        .puzzle-piece::before {
-            content: '';
-            position: absolute;
-            background: inherit;
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        /* Puzzle Piece Color Definitions */
-        .piece-gastro { background: rgba(239, 68, 68, 0.07); border-color: rgba(239, 68, 68, 0.15); }
-        .piece-moda { background: rgba(168, 85, 247, 0.07); border-color: rgba(168, 85, 247, 0.15); }
-        .piece-sport { background: rgba(34, 197, 94, 0.07); border-color: rgba(34, 197, 94, 0.15); }
-        .piece-finance { background: rgba(59, 130, 246, 0.07); border-color: rgba(59, 130, 246, 0.15); }
-        .piece-box { background: rgba(245, 158, 11, 0.07); border-color: rgba(245, 158, 11, 0.15); }
-        .piece-default { background: rgba(255, 255, 255, 0.03); }
-
-        /* Responsive Compact Labels */
-        .puzzle-label {
-            mt-0.5 text-[10px] sm:text-xs font-semibold tracking-wide text-gray-200 text-center uppercase group-hover:text-amber-400 transition-colors duration-300 block w-full whitespace-normal break-words px-0.5;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1.1;
+            transform: scale(1.1) translateY(-4px);
         }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen font-sans">
+<body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between">
 
-    <main class="w-full h-full flex justify-center items-center">
-        <div id="puzzle-grid">
-            <div class="text-gray-500 animate-pulse col-span-full text-center">Inicializace asynchronní tetrisové pipeline...</div>
+    <main class="max-w-7xl mx-auto px-4 py-8 w-full">
+        <div id="grid-sfer" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 sm:gap-8 justify-items-center">
+            <div class="text-gray-500 animate-pulse col-span-full text-center">Inicializace asynchronní datové pipeline...</div>
         </div>
     </main>
 
     <script>
-        // Exact tag mapping to puzzle categories
-        const categorieConfig = {
-            'potraviny': { trida: 'piece-gastro' },
-            'gastro': { trida: 'piece-gastro' },
-            'obleceni': { trida: 'piece-moda' },
-            'nakupy': { trida: 'piece-moda' },
-            'sport': { trida: 'piece-sport' },
-            'sluzby': { trida: 'piece-sport' },
-            'urad': { trida: 'piece-sport' },
-            'finance': { trida: 'piece-finance' },
-            'box': { trida: 'piece-box' },
-            'internal': { trida: 'piece-default' }
-        };
-
-        // Puzzle shapes (how many cells they cover) based on ID for an irregular layout
-        const puzzleShapes = {
-            1: { colSpan: 2, rowSpan: 2 }, // Gastro (L-Shape top)
-            2: { colSpan: 1, rowSpan: 1 }, 
-            3: { colSpan: 1, rowSpan: 2 }, 
-            5: { colSpan: 3, rowSpan: 1 }, // Moda (Horizontal block)
-            6: { colSpan: 1, rowSpan: 1 },
-            7: { colSpan: 2, rowSpan: 1 },
-            8: { colSpan: 2, rowSpan: 2 }, // Sport (Square)
-            9: { colSpan: 1, rowSpan: 1 },
-            10: { colSpan: 1, rowSpan: 2 },
-            13: { colSpan: 3, rowSpan: 1 }, // Finance
-            14: { colSpan: 1, rowSpan: 1 },
-            15: { colSpan: 2, rowSpan: 1 },
-            20: { colSpan: 1, rowSpan: 1 }, // Boxes
-            21: { colSpan: 1, rowSpan: 1 },
-            22: { colSpan: 1, rowSpan: 1 },
-            23: { colSpan: 1, rowSpan: 1 },
-            24: { colSpan: 1, rowSpan: 1 },
-            27: { colSpan: 3, rowSpan: 1 }, // Internal
-            28: { colSpan: 2, rowSpan: 1 }
-            // All other items get 1x1 default
-        };
-
-        async function fetchAndRenderPuzzle() {
-            const container = document.getElementById('puzzle-grid');
+        async function fetchAndRenderGrid() {
+            const gridContainer = document.getElementById('grid-sfer');
             try {
                 const response = await fetch('data.json');
                 if (!response.ok) throw new Error('Chyba při inicializaci síťového požadavku.');
                 
                 const prodejny = await response.json();
-                container.innerHTML = '';
+                gridContainer.innerHTML = '';
 
                 prodejny.forEach(item => {
-                    const hlavniTag = item.tags && item.tags[0] ? item.tags[0] : 'default';
-                    const config = categorieConfig[hlavniTag] || { trida: 'piece-default' };
-                    const shape = puzzleShapes[item.id] || { colSpan: 1, rowSpan: 1 };
-
-                    const pieceWrapper = document.createElement('div');
-                    // Applies class, dynamic puzzle shaping, and group hover
-                    pieceWrapper.className = `puzzle-piece ${config.trida} col-span-${shape.colSpan} row-span-${shape.rowSpan} group`;
-
+                    const wrapper = document.createElement('div');
+                    wrapper.className = "flex flex-col items-center group w-24 sm:w-32";
                     let innerHTML = '';
+                    
                     if (item.isInternal) {
-                        innerHTML = `<a href="${item.link}" class="sphere-card w-12 h-12"><img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all"></a>`;
+                        innerHTML = `
+                            <a href="${item.link}" class="sphere-card w-full">
+                                <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all">
+                            </a>
+                        `;
                     } else if (item.link) {
-                        innerHTML = `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="sphere-card w-12 h-12"><img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover"></a>`;
+                        innerHTML = `
+                            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full">
+                                <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover">
+                            </a>
+                        `;
                     } else {
-                        innerHTML = `<div class="sphere-card w-12 h-12 opacity-40 cursor-default"><img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover grayscale"></div>`;
+                        innerHTML = `
+                            <div class="sphere-card w-full opacity-40 cursor-default">
+                                <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover grayscale">
+                            </div>
+                        `;
                     }
 
-                    // Compact label with new break and alignment logic
-                    innerHTML += `<span class="puzzle-label">${item.type}</span>`;
+                    innerHTML += `
+                        <span class="mt-1 text-xs sm:text-sm font-semibold tracking-wide text-gray-200 text-center uppercase group-hover:text-amber-400 transition-colors duration-300 block w-full whitespace-normal break-words px-0.5" style="font-family: 'Inter', sans-serif; min-height: 2.5rem; display: flex; align-items: flex-start; justify-content: center;">
+                            ${item.type}
+                        </span>
+                    `;
 
-                    pieceWrapper.innerHTML = innerHTML;
-                    container.appendChild(pieceWrapper);
+                    wrapper.innerHTML = innerHTML;
+                    gridContainer.appendChild(wrapper);
                 });
-
             } catch (error) {
-                console.error('Puzzle Pipeline Error:', error);
-                container.innerHTML = `<div class="text-red-400 text-center">Chyba datového streamu: ${error.message}</div>`;
+                console.error('Data Pipeline Error:', error);
+                gridContainer.innerHTML = `<div class="text-red-400 col-span-full text-center">Chyba datového streamu: ${error.message}</div>`;
             }
         }
 
-        document.addEventListener('DOMContentLoaded', fetchAndRenderPuzzle);
+        document.addEventListener('DOMContentLoaded', fetchAndRenderGrid);
 
         // SECURE LAYER
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
+            if (
+                e.key === 'F12' ||
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+                (e.ctrlKey && e.key === 'U')
+            ) {
                 e.preventDefault();
                 return false;
             }
