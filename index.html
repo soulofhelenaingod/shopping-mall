@@ -55,13 +55,13 @@
                     // Obrázky nyní využívají w-full h-full a object-cover pro dokonalý kruhový výřez loga
                     if (item.isInternal) {
                         innerHTML = `
-                            <a href="${item.link}" class="sphere-card w-full border border-amber-500/30 hover:border-amber-400">
+                            <a href="${item.link}" class="sphere-card w-full">
                                 <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all">
                             </a>
                         `;
                     } else if (item.link) {
                         innerHTML = `
-                            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full border border-gray-700/30 hover:border-gray-500">
+                            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full">
                                 <img src="${item.logo}" alt="${item.type}" class="w-full h-full object-cover">
                             </a>
                         `;
