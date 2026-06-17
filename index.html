@@ -97,6 +97,22 @@
         }
 
         document.addEventListener('DOMContentLoaded', fetchAndRenderGrid);
+
+        // SECURE LAYER: Ochrana před inspekcí kódu na klientské straně
+        // Zakáže pravé tlačítko myši
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Zakáže klávesové zkratky F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+        document.addEventListener('keydown', e => {
+            if (
+                e.key === 'F12' ||
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+                (e.ctrlKey && e.key === 'U')
+            ) {
+                e.preventDefault();
+                return false;
+            }
+        });
     </script>
 </body>
 </html>
