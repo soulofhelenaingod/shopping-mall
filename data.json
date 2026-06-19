@@ -27,4 +27,5 @@
   { "id": 26, "type": "INFORMACE", "logo": "assets/logos/1albert.webp", "link": "pronajem.html#kontakt", "tags": ["internal"], "isInternal": true },
   { "id": 27, "type": "VOLNÉ PROSTORY", "logo": "assets/logos/1albert.webp", "link": "pronajem.html", "tags": ["internal"], "isInternal": true },
   { "id": 28, "type": "NOVÁ PRODEJNA A", "logo": "assets/logos/1albert.webp", "link": "", "tags": ["test"] },
-  { "id": 29, "type": "NOVÁ PRODEJNA B", "logo":
+  { "id": 29, "type": "NOVÁ PRODEJNA B", "logo": "assets/logos/1albert.webp", "link": "", "tags": ["test"] }
+]
