@@ -60,22 +60,25 @@
                     wrapper.className = "flex flex-col items-center group w-24 sm:w-32";
                     let innerHTML = '';
                     
+                    // Přidání cesty ke složce s logy
+                    const imagePath = `assets/logos/${item.logo}`;
+                    
                     if (item.isInternal) {
                         innerHTML = `
                             <a href="${item.link}" class="sphere-card w-full">
-                                <img src="${item.logo}" alt="${item.type}" class="filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all">
+                                <img src="${imagePath}" alt="${item.type}" class="filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all">
                             </a>
                         `;
                     } else if (item.link) {
                         innerHTML = `
                             <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full">
-                                <img src="${item.logo}" alt="${item.type}">
+                                <img src="${imagePath}" alt="${item.type}">
                             </a>
                         `;
                     } else {
                         innerHTML = `
                             <div class="sphere-card w-full opacity-40 cursor-default">
-                                <img src="${item.logo}" alt="${item.type}" class="grayscale">
+                                <img src="${imagePath}" alt="${item.type}" class="grayscale">
                             </div>
                         `;
                     }
