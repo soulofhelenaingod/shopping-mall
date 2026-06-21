@@ -35,6 +35,16 @@
             transform: scale(1.23); /* Zoom zruší prázdné okraje u utopených log */
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        /* KATASTRÁLNÍ ÚŘAD (Item 14) - Zvětšení loga uvnitř sféry */
+        #grid-sfer > div:nth-child(14) img {
+            transform: scale(1.7); 
+        }
+
+        /* 4fin FINANČNÍ PORADENSTVÍ (Item 18) - Zmenšení loga proti ořezu */
+        #grid-sfer > div:nth-child(18) img {
+            transform: scale(0.95); 
+        }
     </style>
 </head>
 <body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between">
