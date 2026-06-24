@@ -25,6 +25,6 @@
   { "id": 24, "type": "ALLEGRO BOX", "logo": "24allegro.webp", "link": "https://onedelivery.cz/mapa-boxu-a-vydejnich-mist", "tags": ["box", "posta"] },
   { "id": 25, "type": "GLS BOX", "logo": "25gls.webp", "link": "https://ps-maps.gls-czech.cz/?tdetail=2&p=hodonin&header=0&lng=cs", "tags": ["box", "posta"] },
   { "id": 26, "type": "PPL BOX", "logo": "26ppl.webp", "link": "https://www.ppl.cz/vydejni-mista/hodonin-masarykovo-namesti-16_4307977", "tags": ["box", "posta"] },
-  { "id": 27, "type": "INFORMACE", "logo": "2poepoe.webp", "link": "pronajem.html#kontakt", "tags": ["internal"], "isInternal": true },
-  { "id": 28, "type": "VOLNÉ PROSTORY", "logo": "2poepoe.webp", "link": "pronajem.html", "tags": ["internal"], "isInternal": true }
+  { "id": 27, "type": "INFORMACE & PRONÁJEM", "logo": "informace.webp", "link": "pronajem.html", "tags": ["internal"], "isInternal": true },
+  { "id": 28, "type": "SWR", "logo": "swr.webp", "link": "https://iro.cz/", "tags": ["projekt", "externi"] }
 ]
