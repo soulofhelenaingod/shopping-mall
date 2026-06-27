@@ -8,7 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         /* ZABRÁNĚNÍ BÍLÉMU PROBLIKÁVÁNÍ */
-        html { background-color: #0f172a; }
+        html {
+            background-color: #0f172a; 
+        }
         
         /* PLYNULÉ FIXNÍ POZADÍ PRO MOBILY BEZ POSKAKOVÁNÍ */
         body::before {
@@ -49,24 +51,35 @@
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* OPRAVENÉ SELEKTORY PRO NOVÉ POŘADÍ (INDEXY DLE DATA.JSON) */
-        /* MOUN NAILS & BEAUTY (ID 9) */
-        #grid-sfer > div:nth-child(9) img { transform: scale(1.28); }
-        
-        /* KATASTRÁLNÍ ÚŘAD (ID 15) */
-        #grid-sfer > div:nth-child(15) img { transform: scale(1.15); }
-        
-        /* ČSOB STAVEBNÍ SPOŘITELNA (ID 18) */
-        #grid-sfer > div:nth-child(18) img { transform: scale(1.28); }
-        
-        /* 4fin FINANČNÍ PORADENSTVÍ (ID 19) */
-        #grid-sfer > div:nth-child(19) img { transform: scale(1.28); }
-        
-        /* GLS BOX (ID 26) */
-        #grid-sfer > div:nth-child(26) img { transform: scale(1.28); }
-        
-        /* PPL BOX (ID 27) */
-        #grid-sfer > div:nth-child(27) img { transform: scale(1.05); }
+        /* MOUN NAILS & BEAUTY (Item 8) */
+        #grid-sfer > div:nth-child(8) img {
+            transform: scale(1.28); 
+        }
+
+        /* KATASTRÁLNÍ ÚŘAD (Item 14) */
+        #grid-sfer > div:nth-child(14) img {
+            transform: scale(1.15); 
+        }
+
+        /* ČSOB STAVEBNÍ SPOŘITELNA (Item 17) */
+        #grid-sfer > div:nth-child(17) img {
+            transform: scale(1.28); 
+        }
+
+        /* 4fin FINANČNÍ PORADENSTVÍ (Item 18) */
+        #grid-sfer > div:nth-child(18) img {
+            transform: scale(1.28); 
+        }
+
+        /* GLS BOX (Item 25) */
+        #grid-sfer > div:nth-child(25) img {
+            transform: scale(1.28); 
+        }
+
+        /* PPL BOX (Item 26) */
+        #grid-sfer > div:nth-child(26) img {
+            transform: scale(1.05); 
+        }
     </style>
 </head>
 <body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0">
@@ -89,11 +102,11 @@
 
                 prodejny.forEach(item => {
                     const wrapper = document.createElement('div');
+                    // ZMĚNA: w-20 na mobilu, aby se 4 koule vešly vedle sebe bez scrollování
                     wrapper.className = "flex flex-col items-center group w-20 sm:w-28 md:w-32";
                     let innerHTML = '';
                     
-                    // Načítání přímo z kořenového adresáře dle screenshotu
-                    const imagePath = `${item.logo}`;
+                    const imagePath = `assets/logos/${item.logo}`;
                     
                     if (item.isInternal) {
                         innerHTML = `
@@ -115,6 +128,7 @@
                         `;
                     }
 
+                    // ZMĚNA: text-[10px] a leading-tight pro ostřejší a menší font pod menšími koulemi
                     innerHTML += `
                         <span class="mt-1 text-[10px] sm:text-sm font-semibold tracking-wide text-gray-200 text-center uppercase group-hover:text-amber-400 transition-colors duration-300 block w-full whitespace-normal break-words px-0.5 leading-tight" style="font-family: 'Inter', sans-serif; min-height: 2.5rem; display: flex; align-items: flex-start; justify-content: center;">
                             ${item.type}
@@ -132,7 +146,6 @@
 
         document.addEventListener('DOMContentLoaded', fetchAndRenderGrid);
 
-        // SECURE LAYER
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
             if (
