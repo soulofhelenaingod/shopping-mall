@@ -27,30 +27,27 @@
 </head>
 <body class="text-gray-200 min-h-screen font-sans m-0 p-2 sm:p-4 flex flex-col items-center" style="font-family: 'Inter', sans-serif;">
 
+    <!-- Tlačítko zpět -->
     <div class="w-full mb-4">
         <a href="index.html" class="text-red-800 hover:text-red-700 text-sm font-semibold tracking-wide transition-colors">&larr; zpět na přehled</a>
     </div>
 
+    <!-- Hlavní kontejner -->
     <main class="w-full max-w-full p-0">
         
-        <section class="text-center mb-6 space-y-2">
-            <p class="text-2xl sm:text-3xl font-bold text-red-800 tracking-widest uppercase text-shadow mb-4">otevřeno po - ne: 07:00 - 20:00</p>
+        <!-- Sekce: Hlavní info a Interiér -->
+        <section class="text-center mb-6 space-y-4">
             
-            <div class="space-y-1 text-sm sm:text-base text-gray-300 text-shadow">
-                <p><span class="font-semibold text-gray-100">adresa:</span> obchodní domy iro, a.s., masarykovo náměstí 257/16, 695 01 hodonín</p>
-                <p><span class="font-semibold text-gray-100">mobil:</span> +420 602 508 278, +420 602 522 023 | <span class="font-semibold text-gray-100">ds:</span> k4cff37</p>
-                <p><span class="font-semibold text-gray-100">ič:</span> 25587463 | <span class="font-semibold text-gray-100">dič:</span> cz25587463</p>
-            </div>
-
-            <div class="space-y-1 text-sm sm:text-base text-gray-300 text-shadow">
-                <p><span class="font-semibold text-gray-100">e-mail:</span> <a href="mailto:obchodnidumiro@seznam.cz" class="hover:text-red-800 transition">obchodnidumiro@seznam.cz</a></p>
-                <p><span class="font-semibold text-gray-100">web:</span> <a href="http://www.obchodnidumiro.cz" target="_blank" class="hover:text-red-800 transition">www.obchodnidumiro.cz</a>, <a href="http://www.odiro.cz" target="_blank" class="hover:text-red-800 transition">www.odiro.cz</a></p>
-            </div>
-
-            <div class="relative w-full max-w-full mx-auto group mt-4">
+            <!-- Otevírací doba s hover efektem do tmavě červené -->
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-semibold text-white hover:text-red-800 transition-colors tracking-widest uppercase text-shadow cursor-default">
+                otevírací doba pondělí - neděle 07:00 - 20:00
+            </h1>
+            
+            <!-- Interiér (přesunut nahoru, podpora swipe) -->
+            <div class="relative w-full max-w-full mx-auto group">
                 <button onclick="scrollInfinite('carousel-interier', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black text-white p-3 rounded-full opacity-70 group-hover:opacity-100 transition shadow-lg">&#10094;</button>
                 
-                <div id="carousel-interier" class="flex overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
+                <div id="carousel-interier" class="swipe-carousel flex overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl touch-pan-y">
                     <img src="assets/informace/interier/interier1.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 1">
                     <img src="assets/informace/interier/interier2.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 2">
                     <img src="assets/informace/interier/interier3.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 3">
@@ -59,21 +56,36 @@
 
                 <button onclick="scrollInfinite('carousel-interier', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black text-white p-3 rounded-full opacity-70 group-hover:opacity-100 transition shadow-lg">&#10095;</button>
             </div>
+
+            <!-- Informace -->
+            <div class="space-y-1 text-sm sm:text-base text-gray-300 text-shadow mt-4">
+                <p><span class="font-semibold text-gray-100">adresa:</span> obchodní domy iro, a.s., masarykovo náměstí 257/16, 695 01 hodonín</p>
+                <p><span class="font-semibold text-gray-100">mobil:</span> +420 602 508 278, +420 602 522 023 | <span class="font-semibold text-gray-100">ds:</span> k4cff37</p>
+                <p><span class="font-semibold text-gray-100">ič:</span> 25587463 | <span class="font-semibold text-gray-100">dič:</span> cz25587463</p>
+            </div>
+
+            <div class="space-y-1 text-sm sm:text-base text-gray-300 text-shadow pt-1">
+                <p><span class="font-semibold text-gray-100">e-mail:</span> <a href="mailto:obchodnidumiro@seznam.cz" class="hover:text-red-800 transition-colors">obchodnidumiro@seznam.cz</a></p>
+                <p><span class="font-semibold text-gray-100">web:</span> <a href="http://www.obchodnidumiro.cz" target="_blank" class="hover:text-red-800 transition-colors">www.obchodnidumiro.cz</a>, <a href="http://www.odiro.cz" target="_blank" class="hover:text-red-800 transition-colors">www.odiro.cz</a></p>
+            </div>
+
         </section>
 
-        <hr class="border-slate-700/50 mb-6">
+        <hr class="border-slate-700/50 mb-6 mt-4">
 
+        <!-- Sekce: Prostory k pronájmu -->
         <section class="space-y-8 text-center">
             
             <h2 class="text-2xl sm:text-3xl font-semibold tracking-widest text-white uppercase text-shadow mb-4">k pronájmu</h2>
 
+            <!-- Prostor 1: 12 m2 -->
             <div>
                 <h3 class="text-base sm:text-lg font-medium tracking-wide text-white uppercase text-shadow mb-3">v přízemí 12 m²</h3>
                 
                 <div class="relative w-full max-w-full mx-auto group">
                     <button onclick="scrollInfinite('carousel-1', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black text-white p-3 rounded-full opacity-70 group-hover:opacity-100 transition shadow-lg">&#10094;</button>
                     
-                    <div id="carousel-1" class="flex overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
+                    <div id="carousel-1" class="swipe-carousel flex overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl touch-pan-y">
                         <img src="assets/informace/kpronajmu/12m2/1.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1">
                         <img src="assets/informace/kpronajmu/12m2/2.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 2">
                         <img src="assets/informace/kpronajmu/12m2/3.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 3">
@@ -84,13 +96,14 @@
                 </div>
             </div>
 
+            <!-- Prostor 2: 210 m2 -->
             <div>
                 <h3 class="text-base sm:text-lg font-medium tracking-wide text-white uppercase text-shadow mb-3">sklepní 210 m²</h3>
                 
                 <div class="relative w-full max-w-full mx-auto group">
                     <button onclick="scrollInfinite('carousel-2', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black text-white p-3 rounded-full opacity-70 group-hover:opacity-100 transition shadow-lg">&#10094;</button>
                     
-                    <div id="carousel-2" class="flex overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
+                    <div id="carousel-2" class="swipe-carousel flex overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl touch-pan-y">
                         <img src="assets/informace/kpronajmu/210m2/1_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1">
                         <img src="assets/informace/kpronajmu/210m2/2_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 2">
                         <img src="assets/informace/kpronajmu/210m2/3_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 3">
@@ -108,20 +121,39 @@
     </main>
 
     <script>
-        // Logika pro nekonečné listování
+        // Logika pro nekonečné listování (tlačítka)
         function scrollInfinite(id, direction) {
             const container = document.getElementById(id);
             if (direction === 1) {
-                // Přesun prvního obrázku na konec
                 const firstChild = container.firstElementChild;
                 container.appendChild(firstChild);
             } else {
-                // Přesun posledního obrázku na začátek
                 const lastChild = container.lastElementChild;
                 container.insertBefore(lastChild, container.firstElementChild);
             }
         }
 
+        // Přidání swipe detekce pro dotykové obrazovky
+        document.querySelectorAll('.swipe-carousel').forEach(carousel => {
+            let startX = 0;
+            
+            carousel.addEventListener('touchstart', e => {
+                startX = e.touches[0].clientX;
+            }, { passive: true });
+            
+            carousel.addEventListener('touchend', e => {
+                let endX = e.changedTouches[0].clientX;
+                
+                // Pokud uživatel potáhl více než 40px
+                if (startX - endX > 40) {
+                    scrollInfinite(carousel.id, 1); // potažení doleva -> další fotka
+                } else if (endX - startX > 40) {
+                    scrollInfinite(carousel.id, -1); // potažení doprava -> předchozí fotka
+                }
+            }, { passive: true });
+        });
+
+        // Ochrana obsahu
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
             if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
