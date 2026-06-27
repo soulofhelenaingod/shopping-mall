@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>informace & prostory k pronájmu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         html { background-color: #0f172a; }
@@ -14,7 +14,7 @@
             top: -5%; left: -5%;
             width: 110vw; height: 110vh;
             z-index: -1;
-            /* Cesta přesně odpovídá tvé struktuře na GitHubu */
+            /* Ztmaveno pouze gradientem, bez "boxu" v popředí */
             background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('assets/informace/interier/interier1.webp');
             background-size: cover;
             background-position: center;
@@ -23,6 +23,9 @@
         
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Jemný stín pro lepší čitelnost textu přímo na pozadí */
+        .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
     </style>
 </head>
 <body class="text-gray-200 min-h-screen font-sans m-0 p-4 sm:p-8 flex flex-col items-center" style="font-family: 'Inter', sans-serif;">
@@ -31,63 +34,76 @@
         <a href="index.html" class="text-amber-400 hover:text-amber-300 text-sm font-semibold tracking-wide transition-colors">&larr; zpět na přehled</a>
     </div>
 
-    <main class="w-full max-w-4xl bg-slate-900/60 backdrop-blur-md rounded-2xl border border-slate-700/50 p-6 sm:p-10 shadow-2xl">
+    <main class="w-full max-w-4xl p-0 sm:p-4">
         
         <section class="text-center mb-16 space-y-6">
-            <h1 class="text-2xl sm:text-3xl font-semibold tracking-widest text-white uppercase mb-8">informace & prostory k pronájmu</h1>
             
-            <div class="space-y-2 text-sm sm:text-base text-gray-300">
-                <p><span class="font-semibold text-gray-400">otevírací doba:</span> po - ne : 07:00 - 20:00</p>
-                <p><span class="font-semibold text-gray-400">adresa:</span> obchodní domy iro, a.s., masarykovo náměstí 257/16, 695 01 hodonín</p>
+            <p class="text-2xl sm:text-3xl font-bold text-amber-400 tracking-widest uppercase text-shadow mb-2">otevřeno po - ne: 07:00 - 20:00</p>
+            <h1 class="text-3xl sm:text-4xl font-semibold tracking-widest text-white uppercase text-shadow mb-8">informace</h1>
+            
+            <div class="space-y-2 text-sm sm:text-base text-gray-300 text-shadow">
+                <p><span class="font-semibold text-gray-100">adresa:</span> obchodní domy iro, a.s., masarykovo náměstí 257/16, 695 01 hodonín</p>
+                <p><span class="font-semibold text-gray-100">mobilní spojení:</span> +420 602 508 278, +420 602 522 023</p>
+                <p><span class="font-semibold text-gray-100">datová schránka:</span> k4cff37</p>
+                <p><span class="font-semibold text-gray-100">ič:</span> 25587463 &nbsp;|&nbsp; <span class="font-semibold text-gray-100">dič:</span> cz25587463</p>
             </div>
 
-            <div class="space-y-2 text-sm sm:text-base text-gray-300 pt-4">
-                <p><span class="font-semibold text-gray-400">mobilní spojení:</span> +420 602 508 278, +420 602 522 023</p>
-                <p><span class="font-semibold text-gray-400">datová schránka:</span> k4cff37</p>
-                <p><span class="font-semibold text-gray-400">ič:</span> 25587463 &nbsp;|&nbsp; <span class="font-semibold text-gray-400">dič:</span> cz25587463</p>
+            <div class="space-y-2 text-sm sm:text-base text-gray-300 text-shadow pt-2">
+                <p><span class="font-semibold text-gray-100">e-mail:</span> <a href="mailto:obchodnidumiro@seznam.cz" class="hover:text-amber-400 transition">obchodnidumiro@seznam.cz</a></p>
+                <p><span class="font-semibold text-gray-100">web:</span> <a href="http://www.obchodnidumiro.cz" target="_blank" class="hover:text-amber-400 transition">www.obchodnidumiro.cz</a>, <a href="http://www.odiro.cz" target="_blank" class="hover:text-amber-400 transition">www.odiro.cz</a></p>
             </div>
 
-            <div class="space-y-2 text-sm sm:text-base text-gray-300 pt-4">
-                <p><span class="font-semibold text-gray-400">e-mail:</span> <a href="mailto:obchodnidumiro@seznam.cz" class="hover:text-amber-400 transition">obchodnidumiro@seznam.cz</a></p>
-                <p><span class="font-semibold text-gray-400">web:</span> <a href="http://www.obchodnidumiro.cz" target="_blank" class="hover:text-amber-400 transition">www.obchodnidumiro.cz</a>, <a href="http://www.odiro.cz" target="_blank" class="hover:text-amber-400 transition">www.odiro.cz</a></p>
+            <div class="relative w-full max-w-2xl mx-auto group mt-10">
+                <button onclick="scrollCarousel('carousel-interier', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black text-white p-3 rounded-full opacity-70 group-hover:opacity-100 transition shadow-lg">&#10094;</button>
+                
+                <div id="carousel-interier" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar rounded-xl border border-slate-700/50 shadow-2xl">
+                    <img src="assets/informace/interier/interier1.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 1">
+                    <img src="assets/informace/interier/interier2.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 2">
+                    <img src="assets/informace/interier/interier3.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 3">
+                    <img src="assets/informace/interier/interier4.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 4">
+                </div>
+
+                <button onclick="scrollCarousel('carousel-interier', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black text-white p-3 rounded-full opacity-70 group-hover:opacity-100 transition shadow-lg">&#10095;</button>
             </div>
         </section>
 
         <hr class="border-slate-700/50 mb-12">
 
-        <section class="space-y-16">
+        <section class="space-y-16 text-center">
             
-            <div class="text-center">
-                <h2 class="text-xl sm:text-2xl font-semibold tracking-wide text-white mb-6">12,2 m²</h2>
+            <h2 class="text-3xl sm:text-4xl font-semibold tracking-widest text-white uppercase text-shadow mb-12">prostory k pronájmu</h2>
+
+            <div>
+                <h3 class="text-lg sm:text-xl font-medium tracking-wide text-white uppercase text-shadow mb-6">prostor k pronájmu 12,2 m² v přízemí</h3>
                 
                 <div class="relative w-full max-w-2xl mx-auto group">
                     <button onclick="scrollCarousel('carousel-1', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black text-white p-3 rounded-full opacity-70 group-hover:opacity-100 transition shadow-lg">&#10094;</button>
                     
-                    <div id="carousel-1" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar rounded-xl border border-slate-700/50">
-                        <img src="assets/informace/kpronajmu/12m2/1.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 1">
-                        <img src="assets/informace/kpronajmu/12m2/2.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 2">
-                        <img src="assets/informace/kpronajmu/12m2/3.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 3">
-                        <img src="assets/informace/kpronajmu/12m2/4.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 4">
+                    <div id="carousel-1" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar rounded-xl border border-slate-700/50 shadow-2xl">
+                        <img src="assets/informace/kpronajmu/12m2/1.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1">
+                        <img src="assets/informace/kpronajmu/12m2/2.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 2">
+                        <img src="assets/informace/kpronajmu/12m2/3.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 3">
+                        <img src="assets/informace/kpronajmu/12m2/4.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 4">
                     </div>
 
                     <button onclick="scrollCarousel('carousel-1', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black text-white p-3 rounded-full opacity-70 group-hover:opacity-100 transition shadow-lg">&#10095;</button>
                 </div>
             </div>
 
-            <div class="text-center">
-                <h2 class="text-xl sm:text-2xl font-semibold tracking-wide text-white mb-6">210 m²</h2>
+            <div>
+                <h3 class="text-lg sm:text-xl font-medium tracking-wide text-white uppercase text-shadow mb-6">prostor k pronájmu 210 m² v podzemí se samostatným venkovním vchodem</h3>
                 
                 <div class="relative w-full max-w-2xl mx-auto group">
                     <button onclick="scrollCarousel('carousel-2', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black text-white p-3 rounded-full opacity-70 group-hover:opacity-100 transition shadow-lg">&#10094;</button>
                     
-                    <div id="carousel-2" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar rounded-xl border border-slate-700/50">
-                        <img src="assets/informace/kpronajmu/210m2/1_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 1">
-                        <img src="assets/informace/kpronajmu/210m2/2_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 2">
-                        <img src="assets/informace/kpronajmu/210m2/3_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 3">
-                        <img src="assets/informace/kpronajmu/210m2/4_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 4">
-                        <img src="assets/informace/kpronajmu/210m2/5_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 5">
-                        <img src="assets/informace/kpronajmu/210m2/6_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 6">
-                        <img src="assets/informace/kpronajmu/210m2/7_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-800" alt="Prostor 7">
+                    <div id="carousel-2" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar rounded-xl border border-slate-700/50 shadow-2xl">
+                        <img src="assets/informace/kpronajmu/210m2/1_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1">
+                        <img src="assets/informace/kpronajmu/210m2/2_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 2">
+                        <img src="assets/informace/kpronajmu/210m2/3_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 3">
+                        <img src="assets/informace/kpronajmu/210m2/4_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 4">
+                        <img src="assets/informace/kpronajmu/210m2/5_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 5">
+                        <img src="assets/informace/kpronajmu/210m2/6_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 6">
+                        <img src="assets/informace/kpronajmu/210m2/7_210.webp" class="snap-center w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 7">
                     </div>
 
                     <button onclick="scrollCarousel('carousel-2', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/60 hover:bg-black text-white p-3 rounded-full opacity-70 group-hover:opacity-100 transition shadow-lg">&#10095;</button>
