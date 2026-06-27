@@ -1,5 +1,5 @@
 [
-  { "id": 1, "type": "INFORMACE & PRONÁJEM", "logo": "0iro1winnerWEBP.webp", "link": "pronajem.html", "tags": ["internal"], "isInternal": true },
+  { "id": 1, "type": "iRO OBCHODNÍ DŮM INFORMACE A PRONÁJEM", "logo": "iro.webp", "link": "pronajem.html", "tags": ["internal"], "isInternal": true },
   { "id": 2, "type": "SUPERMARKET", "logo": "1albert.webp", "link": "https://www.albert.cz/nase-prodejny/supermarket-hodonin-masarykovo-nam", "tags": ["potraviny", "nakupy"] },
   { "id": 3, "type": "RESTAURACE", "logo": "2poepoe.webp", "link": "https://www.poe-poe.cz/poe-poe-hodonin", "tags": ["gastro", "jidlo"] },
   { "id": 4, "type": "CUKRÁRNA A KAVÁRNA", "logo": "3delikana.webp", "link": "https://www.facebook.com/hodonindelikana#", "tags": ["gastro", "sladke"] },
