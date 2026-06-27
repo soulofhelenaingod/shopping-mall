@@ -35,7 +35,7 @@
         }
         .sphere-card:hover { transform: scale(1.1) translateY(-4px); }
         
-        /* VELIKOST A OŘEZ */
+        /* ZÁKLADNÍ VELIKOST A OŘEZ */
         .sphere-card img {
             width: 100%; height: 100%;
             object-fit: cover;
@@ -47,13 +47,17 @@
         /* OPRAVA ZOBRAZENÍ PRVNÍHO LOGA (NENÍ FILTROVÁNO) */
         #grid-sfer > div:nth-child(1) img { filter: none !important; opacity: 1 !important; }
 
-        /* SPECIFICKÉ ÚPRAVY VELIKOSTÍ (POSUNUTO PO PŘIDÁNÍ LOGA) */
+        /* SPECIFICKÉ ÚPRAVY VELIKOSTÍ */
         #grid-sfer > div:nth-child(9) img { transform: scale(1.28); }
-        #grid-sfer > div:nth-child(15) img { transform: scale(1.15); }
+        #grid-sfer > div:nth-child(12) img { transform: scale(1.35); }
+        #grid-sfer > div:nth-child(15) img { transform: scale(1.25); }
         #grid-sfer > div:nth-child(18) img { transform: scale(1.28); }
         #grid-sfer > div:nth-child(19) img { transform: scale(1.28); }
         #grid-sfer > div:nth-child(26) img { transform: scale(1.28); }
         #grid-sfer > div:nth-child(27) img { transform: scale(1.05); }
+
+        /* VYCHYTÁVKA PRO SWR (28. LOGO) - POVOLENÍ PŘETEČENÍ TEXTU */
+        #grid-sfer > div:nth-child(28) .sphere-card { overflow: visible !important; }
     </style>
 </head>
 <body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0">
@@ -106,7 +110,6 @@
             }
         }
 
-        // ZÁKLADNÍ INICIALIZACE
         document.addEventListener('DOMContentLoaded', fetchAndRenderGrid);
 
         // ZABEZPEČENÍ
