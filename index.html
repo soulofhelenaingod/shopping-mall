@@ -41,7 +41,7 @@
             transform: scale(1.1) translateY(-4px);
         }
         
-        /* SJEDNOCENÍ VELIKOSTI, CENTROVÁNÍ A OŘEZU VNITŘNÍCH KOULÍ */
+        /* SJEDNOCENÍ VELIKOSTI A OŘEZU VNITŘNÍCH KOULÍ */
         .sphere-card img {
             width: 100%;
             height: 100%;
@@ -51,35 +51,19 @@
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* MOUN NAILS & BEAUTY (Původně 8 -> Nově 9) */
-        #grid-sfer > div:nth-child(9) img {
-            transform: scale(1.28); 
+        /* OPRAVA: VYNUCENÍ ZOBRAZENÍ PRVNÍHO LOGA */
+        #grid-sfer > div:nth-child(1) img {
+            filter: none !important;
+            opacity: 1 !important;
         }
 
-        /* KATASTRÁLNÍ ÚŘAD (Původně 14 -> Nově 15) */
-        #grid-sfer > div:nth-child(15) img {
-            transform: scale(1.15); 
-        }
-
-        /* ČSOB STAVEBNÍ SPOŘITELNA (Původně 17 -> Nově 18) */
-        #grid-sfer > div:nth-child(18) img {
-            transform: scale(1.28); 
-        }
-
-        /* 4fin FINANČNÍ PORADENSTVÍ (Původně 18 -> Nově 19) */
-        #grid-sfer > div:nth-child(19) img {
-            transform: scale(1.28); 
-        }
-
-        /* GLS BOX (Původně 25 -> Nově 26) */
-        #grid-sfer > div:nth-child(26) img {
-            transform: scale(1.28); 
-        }
-
-        /* PPL BOX (Původně 26 -> Nově 27) */
-        #grid-sfer > div:nth-child(27) img {
-            transform: scale(1.05); 
-        }
+        /* ÚPRAVY VELIKOSTÍ PRO KONKRÉTNÍ PRVKY (POSUNUTO O +1) */
+        #grid-sfer > div:nth-child(9) img { transform: scale(1.28); } /* MOUN NAILS */
+        #grid-sfer > div:nth-child(15) img { transform: scale(1.15); } /* KATASTRÁLNÍ ÚŘAD */
+        #grid-sfer > div:nth-child(18) img { transform: scale(1.28); } /* ČSOB */
+        #grid-sfer > div:nth-child(19) img { transform: scale(1.28); } /* 4fin */
+        #grid-sfer > div:nth-child(26) img { transform: scale(1.28); } /* GLS BOX */
+        #grid-sfer > div:nth-child(27) img { transform: scale(1.05); } /* PPL BOX */
     </style>
 </head>
 <body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0">
