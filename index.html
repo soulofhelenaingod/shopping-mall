@@ -10,14 +10,14 @@
         /* ZABRÁNĚNÍ BÍLÉMU PROBLIKÁVÁNÍ */
         html { background-color: #0f172a; }
         
-        /* PLYNULÉ FIXNÍ POZADÍ - 33% FILTR BEZ BLURU */
+        /* PLYNULÉ FIXNÍ POZADÍ - 70% FILTR BEZ BLURU */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
             z-index: -1;
-            background-image: linear-gradient(rgba(15, 23, 42, 0.33), rgba(15, 23, 42, 0.33)), url('interier2.webp');
+            background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('interier2.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -86,7 +86,7 @@
                     
                     const imagePath = `assets/logos/${item.logo}`;
                     
-                    // PŘIDÁNO ZABEZPEČENÍ OBRÁZKŮ: pointer-events-none select-none draggable="false"
+                    // PŘIDÁNO ZABEZPEČENÍ OBRÁZKŮ A ODKAZY VE STEJNÉM OKNĚ
                     if (item.isInternal) {
                         innerHTML = `<a href="${item.link}" class="sphere-card w-full"><img src="${imagePath}" alt="${item.type}" class="filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all pointer-events-none select-none" draggable="false"></a>`;
                     } else if (item.link) {
