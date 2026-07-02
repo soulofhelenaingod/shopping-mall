@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>k pronájmu</title>
     
-    <!-- Opravená favicona -->
-    <link rel="icon" type="image/webp" href="rubyonrailsplus.webp">
+    <!-- Opravená cesta k faviconě -->
+    <link rel="icon" type="image/webp" href="../rubyonrailsplus.webp">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -18,7 +18,8 @@
             top: -5%; left: -5%;
             width: 110vw; height: 110vh;
             z-index: -1;
-            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('assets/informace/interier/interier1.webp');
+            /* Cesta k pozadí upravena na ../ */
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('../assets/informace/interier/interier1.webp');
             background-size: cover;
             background-position: center;
             pointer-events: none;
@@ -44,10 +45,11 @@
                 <button onclick="scrollInfinite('carousel-interier', -1)" class="absolute left-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-r from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-start pl-2 sm:pl-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10094;</button>
                 
                 <div id="carousel-interier" class="swipe-carousel flex overflow-hidden touch-pan-y">
-                    <img src="assets/informace/interier/interier1.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 1">
-                    <img src="assets/informace/interier/interier2.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 2">
-                    <img src="assets/informace/interier/interier3.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 3">
-                    <img src="assets/informace/interier/interier4.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 4">
+                    <!-- Cesty k obrázkům upraveny na ../ -->
+                    <img src="../assets/informace/interier/interier1.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 1">
+                    <img src="../assets/informace/interier/interier2.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 2">
+                    <img src="../assets/informace/interier/interier3.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 3">
+                    <img src="../assets/informace/interier/interier4.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 4">
                 </div>
 
                 <button onclick="scrollInfinite('carousel-interier', 1)" class="absolute right-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-l from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-end pr-2 sm:pr-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10095;</button>
@@ -62,7 +64,6 @@
             </div>
         </section>
 
-        <!-- Přidána mezera (mt-12 sm:mt-16) nad K PRONÁJMU -->
         <section class="space-y-4 text-center mt-12 sm:mt-16">
             <h2 class="text-center text-2xl sm:text-3xl font-semibold tracking-widest text-white uppercase text-shadow">K PRONÁJMU</h2>
 
@@ -71,10 +72,10 @@
                 <div class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
                     <button onclick="scrollInfinite('carousel-1', -1)" class="absolute left-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-r from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-start pl-2 sm:pl-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10094;</button>
                     <div id="carousel-1" class="swipe-carousel flex overflow-hidden touch-pan-y">
-                        <img src="assets/informace/kpronajmu/12m2/1.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1">
-                        <img src="assets/informace/kpronajmu/12m2/2.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 2">
-                        <img src="assets/informace/kpronajmu/12m2/3.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 3">
-                        <img src="assets/informace/kpronajmu/12m2/4.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 4">
+                        <img src="../assets/informace/kpronajmu/12m2/1.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1">
+                        <img src="../assets/informace/kpronajmu/12m2/2.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 2">
+                        <img src="../assets/informace/kpronajmu/12m2/3.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 3">
+                        <img src="../assets/informace/kpronajmu/12m2/4.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 4">
                     </div>
                     <button onclick="scrollInfinite('carousel-1', 1)" class="absolute right-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-l from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-end pr-2 sm:pr-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10095;</button>
                 </div>
@@ -85,13 +86,13 @@
                 <div class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
                     <button onclick="scrollInfinite('carousel-2', -1)" class="absolute left-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-r from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-start pl-2 sm:pl-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10094;</button>
                     <div id="carousel-2" class="swipe-carousel flex overflow-hidden touch-pan-y">
-                        <img src="assets/informace/kpronajmu/210m2/1_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1">
-                        <img src="assets/informace/kpronajmu/210m2/2_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 2">
-                        <img src="assets/informace/kpronajmu/210m2/3_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 3">
-                        <img src="assets/informace/kpronajmu/210m2/4_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 4">
-                        <img src="assets/informace/kpronajmu/210m2/5_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 5">
-                        <img src="assets/informace/kpronajmu/210m2/6_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 6">
-                        <img src="assets/informace/kpronajmu/210m2/7_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 7">
+                        <img src="../assets/informace/kpronajmu/210m2/1_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1">
+                        <img src="../assets/informace/kpronajmu/210m2/2_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 2">
+                        <img src="../assets/informace/kpronajmu/210m2/3_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 3">
+                        <img src="../assets/informace/kpronajmu/210m2/4_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 4">
+                        <img src="../assets/informace/kpronajmu/210m2/5_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 5">
+                        <img src="../assets/informace/kpronajmu/210m2/6_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 6">
+                        <img src="../assets/informace/kpronajmu/210m2/7_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 7">
                     </div>
                     <button onclick="scrollInfinite('carousel-2', 1)" class="absolute right-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-l from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-end pr-2 sm:pr-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10095;</button>
                 </div>
@@ -101,7 +102,8 @@
     </main>
 
     <div class="w-full mt-8 mb-4 text-center">
-        <a href="index.html" class="text-neon hover:text-white text-sm font-semibold tracking-wide transition-colors uppercase">&larr; zpět</a>
+        <!-- Odkaz zpět upraven na ../index.html -->
+        <a href="../index.html" class="text-neon hover:text-white text-sm font-semibold tracking-wide transition-colors uppercase">&larr; zpět</a>
     </div>
 
     <script>
