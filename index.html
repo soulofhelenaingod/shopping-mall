@@ -46,18 +46,15 @@
         /* --- 3D RUBÍNOVÉ TLAČÍTKO --- */
         .ruby-sphere {
             border-radius: 50%;
-            /* Zlatý okraj */
             border: 2px solid #fbbf24; 
-            /* Sytý červený krystalický přechod */
             background: radial-gradient(circle at 35% 25%, #fca5a5 0%, #ef4444 20%, #991b1b 60%, #450a0a 100%);
-            /* 3D efekty (vnitřní stíny pro objem a vnější pro hloubku) */
             box-shadow: 
                 inset -5px -5px 15px rgba(0, 0, 0, 0.8), 
                 inset 5px 5px 10px rgba(255, 255, 255, 0.4), 
-                0 0 0 2px #b45309, /* Vnější tmavší zlato pro 3D lem */
+                0 0 0 2px #b45309,
                 0 10px 20px rgba(0, 0, 0, 0.6);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
+            /* ZDE BYLA CHYBA (position: relative), KTERÁ ROZBILA ROZLOŽENÍ - ODSTRANĚNO */
         }
         
         /* Bílý skleněný odlesk na horní straně rubínu */
@@ -71,7 +68,7 @@
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
             border-radius: 50%;
             transform: rotate(-15deg);
-            pointer-events: none; /* Kliknutí projde skrz odlesk */
+            pointer-events: none;
         }
 
         .ruby-sphere:hover {
@@ -81,23 +78,21 @@
                 inset 5px 5px 10px rgba(255, 255, 255, 0.5), 
                 0 0 0 2px #b45309,
                 0 12px 25px rgba(0, 0, 0, 0.7),
-                0 0 20px rgba(251, 191, 36, 0.4); /* Zlatá záře při najetí */
+                0 0 20px rgba(251, 191, 36, 0.4); 
         }
 
         /* Aktivní stav (Když hudba hraje) */
         .ruby-sphere.playing {
-            /* Rubín se více "rozzáří" zevnitř */
             background: radial-gradient(circle at 35% 25%, #fecaca 0%, #f87171 25%, #b91c1c 65%, #7f1d1d 100%);
             box-shadow: 
                 inset -5px -5px 15px rgba(0, 0, 0, 0.7), 
                 inset 5px 5px 10px rgba(255, 255, 255, 0.6), 
                 0 0 0 2px #b45309,
-                0 0 30px rgba(239, 68, 68, 0.7), /* Červená záře do okolí */
-                0 0 15px rgba(251, 191, 36, 0.8); /* Zlatá záře */
-            border-color: #fde047; /* Jasnější zlato */
+                0 0 30px rgba(239, 68, 68, 0.7), 
+                0 0 15px rgba(251, 191, 36, 0.8); 
+            border-color: #fde047; 
         }
 
-        /* Z-index pro ikony, aby byly nad odleskem */
         .ruby-sphere svg {
             position: relative;
             z-index: 10;
@@ -149,13 +144,11 @@
         radioBtn.addEventListener('click', () => {
             if (audioPlayer.paused) {
                 audioPlayer.play();
-                // Přidá záři a přepne na zlatou ikonu vln
                 radioBtn.classList.add('playing');
                 iconMuted.classList.add('hidden');
                 iconPlaying.classList.remove('hidden');
             } else {
                 audioPlayer.pause();
-                // Odebere záři a přepne zpět na křížek
                 radioBtn.classList.remove('playing');
                 iconPlaying.classList.add('hidden');
                 iconMuted.classList.remove('hidden');
