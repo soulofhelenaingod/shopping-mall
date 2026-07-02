@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obchodní Dům | Data-Driven Portal</title>
     
-    <!-- Favicona -->
+    <!-- Aktualizovaná favicona z kořenové složky -->
     <link rel="icon" type="image/webp" href="favicon.webp">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
@@ -43,33 +43,67 @@
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* 3D SFÉRICKÉ TLAČÍTKO RÁDIA */
-        .radio-sphere {
+        /* --- 3D RUBÍNOVÉ TLAČÍTKO --- */
+        .ruby-sphere {
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), rgba(15, 23, 42, 0.9) 60%);
+            /* Zlatý okraj */
+            border: 2px solid #fbbf24; 
+            /* Sytý červený krystalický přechod */
+            background: radial-gradient(circle at 35% 25%, #fca5a5 0%, #ef4444 20%, #991b1b 60%, #450a0a 100%);
+            /* 3D efekty (vnitřní stíny pro objem a vnější pro hloubku) */
             box-shadow: 
-                inset -4px -4px 10px rgba(0, 0, 0, 0.8), 
-                inset 4px 4px 10px rgba(255, 255, 255, 0.3), 
+                inset -5px -5px 15px rgba(0, 0, 0, 0.8), 
+                inset 5px 5px 10px rgba(255, 255, 255, 0.4), 
+                0 0 0 2px #b45309, /* Vnější tmavší zlato pro 3D lem */
                 0 10px 20px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
-        .radio-sphere:hover {
+        
+        /* Bílý skleněný odlesk na horní straně rubínu */
+        .ruby-sphere::after {
+            content: '';
+            position: absolute;
+            top: 8%;
+            left: 18%;
+            width: 45%;
+            height: 25%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+            border-radius: 50%;
+            transform: rotate(-15deg);
+            pointer-events: none; /* Kliknutí projde skrz odlesk */
+        }
+
+        .ruby-sphere:hover {
             transform: scale(1.1) translateY(-2px);
-        }
-        /* Zářící stav při přehrávání */
-        .radio-sphere.playing {
             box-shadow: 
-                inset -4px -4px 10px rgba(0, 0, 0, 0.8), 
-                inset 4px 4px 10px rgba(255, 255, 255, 0.3), 
-                0 0 25px rgba(207, 255, 4, 0.5), 
-                inset 0 0 15px rgba(207, 255, 4, 0.3);
-            border-color: rgba(207, 255, 4, 0.6);
+                inset -5px -5px 15px rgba(0, 0, 0, 0.8), 
+                inset 5px 5px 10px rgba(255, 255, 255, 0.5), 
+                0 0 0 2px #b45309,
+                0 12px 25px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(251, 191, 36, 0.4); /* Zlatá záře při najetí */
+        }
+
+        /* Aktivní stav (Když hudba hraje) */
+        .ruby-sphere.playing {
+            /* Rubín se více "rozzáří" zevnitř */
+            background: radial-gradient(circle at 35% 25%, #fecaca 0%, #f87171 25%, #b91c1c 65%, #7f1d1d 100%);
+            box-shadow: 
+                inset -5px -5px 15px rgba(0, 0, 0, 0.7), 
+                inset 5px 5px 10px rgba(255, 255, 255, 0.6), 
+                0 0 0 2px #b45309,
+                0 0 30px rgba(239, 68, 68, 0.7), /* Červená záře do okolí */
+                0 0 15px rgba(251, 191, 36, 0.8); /* Zlatá záře */
+            border-color: #fde047; /* Jasnější zlato */
+        }
+
+        /* Z-index pro ikony, aby byly nad odleskem */
+        .ruby-sphere svg {
+            position: relative;
+            z-index: 10;
         }
 
         #grid-sfer > div:nth-child(1) img { filter: none !important; opacity: 1 !important; }
-        /* SPECIFICKÉ VELIKOSTI */
         #grid-sfer > div:nth-child(9) img { transform: scale(1.28); }
         #grid-sfer > div:nth-child(12) img { transform: scale(1.35); }
         #grid-sfer > div:nth-child(15) img { transform: scale(1.25); }
@@ -84,16 +118,16 @@
 
     <audio id="bg-radio" src="https://stream.zeno.fm/f3wvbbqmdg8uv" preload="none"></audio>
 
-    <!-- 3D SFÉRICKÉ TLAČÍTKO -->
-    <button id="radio-toggle" class="radio-sphere fixed bottom-8 right-8 w-16 h-16 z-[100] flex items-center justify-center cursor-pointer">
+    <!-- 3D RUBÍNOVÉ TLAČÍTKO -->
+    <button id="radio-toggle" class="ruby-sphere fixed bottom-8 right-8 w-16 h-16 z-[100] flex items-center justify-center cursor-pointer">
         
-        <!-- IKONA: VYPNOTO (KŘÍŽEK) -->
-        <svg id="icon-muted" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-gray-400 transition-opacity duration-300">
+        <!-- IKONA: VYPNOUTO (Reproduktor s křížkem) -->
+        <svg id="icon-muted" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="w-8 h-8 text-white opacity-90 transition-opacity duration-300">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.5c-.88 0-1.6-.72-1.6-1.6V9.85c0-.88.72-1.6 1.6-1.6h2.25z" />
         </svg>
 
-        <!-- IKONA: HRAJE (VLNY) - Skrytá ve výchozím stavu -->
-        <svg id="icon-playing" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8 text-[#CFFF04] hidden transition-opacity duration-300 drop-shadow-[0_0_8px_rgba(207,255,4,0.8)]">
+        <!-- IKONA: HRAJE (Reproduktor s vlnami, zlatá záře) -->
+        <svg id="icon-playing" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8 text-[#fbbf24] hidden transition-opacity duration-300 drop-shadow-[0_0_6px_rgba(251,191,36,1)]">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.5c-.88 0-1.6-.72-1.6-1.6V9.85c0-.88.72-1.6 1.6-1.6h2.25Z" />
         </svg>
 
@@ -115,7 +149,7 @@
         radioBtn.addEventListener('click', () => {
             if (audioPlayer.paused) {
                 audioPlayer.play();
-                // Přidá záři a přepne na ikonu zvuku
+                // Přidá záři a přepne na zlatou ikonu vln
                 radioBtn.classList.add('playing');
                 iconMuted.classList.add('hidden');
                 iconPlaying.classList.remove('hidden');
