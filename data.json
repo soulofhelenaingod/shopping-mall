@@ -3,7 +3,7 @@
   { "id": 2, "type": "SUPERMARKET", "logo": "1albert.webp", "link": "https://www.albert.cz/nase-prodejny/supermarket-hodonin-masarykovo-nam", "tags": ["potraviny", "nakupy"] },
   { "id": 3, "type": "RESTAURACE", "logo": "2poepoe.webp", "link": "https://www.poe-poe.cz/poe-poe-hodonin", "tags": ["gastro", "jidlo"] },
   { "id": 4, "type": "CUKRÁRNA & KAVÁRNA", "logo": "3delikana.webp", "link": "https://www.facebook.com/hodonindelikana#", "tags": ["gastro", "sladke"] },
-  { "id": 5, "type": "LÉKÁRNA", "logo": "4zdravi.webp", "link": "https://www.zdravi3v1.cz/contact-2/", "tags": ["zdravi", "sluzby"] },
+  { "id": 5, "type": "LÉKÁRNA", "logo": "4zdravi.webp", "link": "https://www.pharmapoint.cz/lekarny/264-lekarna-iro/", "tags": ["zdravi", "sluzby"] },
   { "id": 6, "type": "FITNESS POSILOVNA", "logo": "5irogym.webp", "link": "", "tags": ["sport", "fitness"] },
   { "id": 7, "type": "FITNESS ALPINNING", "logo": "6alpin.webp", "link": "https://www.facebook.com/AlpinningHodonin/?locale=cs_CZ", "tags": ["sport", "fitness"] },
   { "id": 8, "type": "SOLÁRIUM", "logo": "7puresun.webp", "link": "https://puresun.cz/hodonin/", "tags": ["sluzby", "krasa"] },
