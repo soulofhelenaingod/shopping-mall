@@ -3,131 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>k pronájmu</title>
+    <title>K Pronájmu | Obchodní Dům</title>
+    
+    <!-- Správná favicona z kořenové složky -->
+    <link rel="icon" type="image/webp" href="rubyonrailsplus.webp">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        html { background-color: #0f172a; }
-        body::before {
-            content: "";
-            position: fixed;
-            top: -5%; left: -5%;
-            width: 110vw; height: 110vh;
-            z-index: -1;
-            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('assets/informace/interier/interier1.webp');
-            background-size: cover;
-            background-position: center;
-            pointer-events: none;
-        }
-        
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-        .text-neon { color: #CFFF04; }
-        .hover-neon:hover { color: #CFFF04; }
+        html { background-color: #0f172a; font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="text-gray-200 min-h-screen font-sans m-0 p-2 sm:p-4 flex flex-col items-center" style="font-family: 'Inter', sans-serif;">
+<body class="text-gray-100 min-h-screen bg-[#0f172a] pb-12">
 
-    <main class="w-full max-w-full p-0">
-        
-        <section class="text-center mb-4 space-y-4">
-            <h1 class="text-center text-xl sm:text-2xl md:text-3xl font-semibold text-white hover:text-red-800 transition-colors tracking-widest uppercase text-shadow cursor-default">
-                OTEVÍRACÍ DOBA PONDĚLÍ - NEDĚLE 07:00 - 20:00
-            </h1>
-            
-            <div class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
-                <button onclick="scrollInfinite('carousel-interier', -1)" class="absolute left-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-r from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-start pl-2 sm:pl-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10094;</button>
-                
-                <div id="carousel-interier" class="swipe-carousel flex overflow-hidden touch-pan-y">
-                    <img src="assets/informace/interier/interier1.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 1">
-                    <img src="assets/informace/interier/interier2.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 2">
-                    <img src="assets/informace/interier/interier3.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 3">
-                    <img src="assets/informace/interier/interier4.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 4">
-                </div>
-
-                <button onclick="scrollInfinite('carousel-interier', 1)" class="absolute right-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-l from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-end pr-2 sm:pr-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10095;</button>
-            </div>
-
-            <div class="space-y-1 text-sm sm:text-base text-gray-300 text-shadow mt-4">
-                <p><span class="font-semibold text-gray-100">Adresa:</span> Obchodní domy iRO, a.s., Masarykovo náměstí 257/16 695 01 Hodonín</p>
-                <p><span class="font-semibold text-gray-100">Mobilní spojení:</span> +420 602 508 278, +420 602 522 023</p>
-                <p><span class="font-semibold text-gray-100">Datová schránka:</span> k4cff37 &nbsp;|&nbsp; <span class="font-semibold text-gray-100">IČ:</span> 25587463 &nbsp;|&nbsp; <span class="font-semibold text-gray-100">DIČ:</span> CZ25587463</p>
-                <p><span class="font-semibold text-gray-100">E-mail:</span> <a href="mailto:obchodnidumiro@seznam.cz" class="hover:text-red-800 transition-colors">obchodnidumiro@seznam.cz</a><br>
-                <span class="font-semibold text-gray-100">Web:</span> <a href="http://www.obchodnidumiro.cz" target="_blank" class="hover:text-red-800 transition-colors">www.obchodnidumiro.cz</a>, <a href="http://www.odiro.cz" target="_blank" class="hover:text-red-800 transition-colors">www.odiro.cz</a></p>
-            </div>
-        </section>
-
-        <section class="space-y-4 text-center">
-            <h2 class="text-center text-2xl sm:text-3xl font-semibold tracking-widest text-white uppercase text-shadow">K PRONÁJMU</h2>
-
-            <div>
-                <h3 class="text-center text-base sm:text-lg font-medium tracking-wide text-white uppercase text-shadow mb-2">V PŘÍZEMÍ 12 m²</h3>
-                <div class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
-                    <button onclick="scrollInfinite('carousel-1', -1)" class="absolute left-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-r from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-start pl-2 sm:pl-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10094;</button>
-                    <div id="carousel-1" class="swipe-carousel flex overflow-hidden touch-pan-y">
-                        <img src="assets/informace/kpronajmu/12m2/1.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1">
-                        <img src="assets/informace/kpronajmu/12m2/2.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 2">
-                        <img src="assets/informace/kpronajmu/12m2/3.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 3">
-                        <img src="assets/informace/kpronajmu/12m2/4.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 4">
-                    </div>
-                    <button onclick="scrollInfinite('carousel-1', 1)" class="absolute right-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-l from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-end pr-2 sm:pr-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10095;</button>
-                </div>
-            </div>
-
-            <div>
-                <h3 class="text-center text-base sm:text-lg font-medium tracking-wide text-white uppercase text-shadow mb-2">SKLEPNÍ 210 m²</h3>
-                <div class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
-                    <button onclick="scrollInfinite('carousel-2', -1)" class="absolute left-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-r from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-start pl-2 sm:pl-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10094;</button>
-                    <div id="carousel-2" class="swipe-carousel flex overflow-hidden touch-pan-y">
-                        <img src="assets/informace/kpronajmu/210m2/1_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1">
-                        <img src="assets/informace/kpronajmu/210m2/2_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 2">
-                        <img src="assets/informace/kpronajmu/210m2/3_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 3">
-                        <img src="assets/informace/kpronajmu/210m2/4_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 4">
-                        <img src="assets/informace/kpronajmu/210m2/5_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 5">
-                        <img src="assets/informace/kpronajmu/210m2/6_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 6">
-                        <img src="assets/informace/kpronajmu/210m2/7_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 7">
-                    </div>
-                    <button onclick="scrollInfinite('carousel-2', 1)" class="absolute right-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-l from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-end pr-2 sm:pr-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10095;</button>
-                </div>
-            </div>
-
-        </section>
-    </main>
-
-    <div class="w-full mt-8 mb-4 text-center">
-        <a href="index.html" class="text-neon hover:text-white text-sm font-semibold tracking-wide transition-colors uppercase">&larr; zpět</a>
+    <!-- Horní lišta s otevírací dobou -->
+    <div class="w-full bg-[#1e293b] text-center py-3 border-b border-gray-800 tracking-wide font-semibold text-sm sm:text-base uppercase">
+        Otevírací doba Pondělí - Neděle 07:00 - 20:00
     </div>
 
+    <main class="max-w-4xl mx-auto px-4 mt-6 flex flex-col gap-8">
+
+        <!-- PRVNÍ SLIDER (Interiér / Dětský koutek) -->
+        <div class="relative w-full aspect-[2/1] rounded-2xl overflow-hidden bg-slate-900 shadow-xl group">
+            <!-- Fotky -->
+            <div id="slider-1" class="w-full h-full flex transition-transform duration-500">
+                <img src="assets/informace/interier/interier1.webp" alt="Interiér 1" class="w-full h-full object-cover shrink-0">
+                <img src="assets/informace/interier/interier2.webp" alt="Interiér 2" class="w-full h-full object-cover shrink-0">
+                <img src="assets/informace/interier/interier3.webp" alt="Interiér 3" class="w-full h-full object-cover shrink-0">
+                <img src="assets/informace/interier/interier4.webp" alt="Interiér 4" class="w-full h-full object-cover shrink-0">
+            </div>
+            
+            <!-- Výrazné navigační šipky -->
+            <button onclick="moveSlider(1, -1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-[#CFFF04] opacity-90 p-2 rounded-full transition-all cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+            <button onclick="moveSlider(1, 1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-[#CFFF04] opacity-90 p-2 rounded-full transition-all cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- KONTAKTNÍ A INFORMAČNÍ SEKCE -->
+        <div class="bg-[#1e293b]/50 border border-gray-800 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-lg text-center sm:text-left">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm sm:text-base text-gray-300">
+                
+                <div class="space-y-4">
+                    <p><span class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Adresa</span>
+                       <strong class="text-gray-100 font-medium">Obchodní domy iRO, a.s.</strong><br>Masarykovo náměstí 257/16<br>695 01 Hodonín</p>
+                    
+                    <p><span class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Mobilní spojení</span>
+                       <a href="tel:+420602508278" class="text-gray-100 hover:text-[#CFFF04] transition-colors">+420 602 508 278</a>, 
+                       <a href="tel:+420602522023" class="text-gray-100 hover:text-[#CFFF04] transition-colors">+420 602 522 023</a></p>
+                </div>
+
+                <div class="space-y-4">
+                    <p><span class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Identifikační údaje</span>
+                       Datová schránka: <strong class="text-gray-200 font-mono text-xs">k4cff37</strong><br>IČ: 25587463 | DIČ: CZ25587463</p>
+                    
+                    <p><span class="block text-xs font-semibold uppercase tracking-wider text-gray-500">E-mail</span>
+                       <a href="mailto:obchodnidumiro@seznam.cz" class="text-[#CFFF04] hover:underline font-medium">obchodnidumiro@seznam.cz</a></p>
+                    
+                    <p><span class="block text-xs font-semibold uppercase tracking-wider text-gray-500">Webové stránky</span>
+                       <a href="https://www.obchodnidumiro.cz" target="_blank" class="text-[#CFFF04] hover:underline font-medium block">www.obchodnidumiro.cz</a>
+                       <a href="https://www.odiro.cz" target="_blank" class="text-[#CFFF04] hover:underline font-medium block">www.odiro.cz</a></p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- NADPIS -->
+        <div class="text-center my-8 py-4 border-y border-gray-800/50">
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight uppercase text-white mb-2">K Pronájmu</h1>
+            <p class="text-[#CFFF04] font-semibold text-lg sm:text-xl tracking-wide uppercase">V přízemí 12 m²</p>
+        </div>
+
+        <!-- DRUHÝ SLIDER (Prostory k pronájmu) -->
+        <div class="relative w-full aspect-[2/1] rounded-2xl overflow-hidden bg-slate-900 shadow-xl group">
+            <!-- Fotky -->
+            <div id="slider-2" class="w-full h-full flex transition-transform duration-500">
+                <img src="assets/informace/interier/interier3.webp" alt="Prostor 1" class="w-full h-full object-cover shrink-0">
+                <img src="assets/informace/interier/interier4.webp" alt="Prostor 2" class="w-full h-full object-cover shrink-0">
+            </div>
+            
+            <!-- Šipky -->
+            <button onclick="moveSlider(2, -1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-[#CFFF04] opacity-90 p-2 rounded-full transition-all cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+            <button onclick="moveSlider(2, 1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-[#CFFF04] opacity-90 p-2 rounded-full transition-all cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </button>
+        </div>
+
+    </main>
+
     <script>
-        function scrollInfinite(id, direction) {
-            const container = document.getElementById(id);
-            if (direction === 1) {
-                const firstChild = container.firstElementChild;
-                container.appendChild(firstChild);
-            } else {
-                const lastChild = container.lastElementChild;
-                container.insertBefore(lastChild, container.firstElementChild);
-            }
+        // Logika pro ovládání nezávislých sliderů
+        const sliderStates = {
+            1: { current: 0, total: 4 }, 
+            2: { current: 0, total: 2 }  
+        };
+
+        function moveSlider(sliderId, direction) {
+            const state = sliderStates[sliderId];
+            state.current = (state.current + direction + state.total) % state.total;
+            
+            const sliderElement = document.getElementById(`slider-${sliderId}`);
+            sliderElement.style.transform = `translateX(-${state.current * 100}%)`;
         }
-
-        document.querySelectorAll('.swipe-carousel').forEach(carousel => {
-            let startX = 0;
-            carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-            carousel.addEventListener('touchend', e => {
-                let endX = e.changedTouches[0].clientX;
-                if (startX - endX > 40) scrollInfinite(carousel.id, 1);
-                else if (endX - startX > 40) scrollInfinite(carousel.id, -1);
-            }, { passive: true });
-        });
-
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', e => {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
-                e.preventDefault();
-                return false;
-            }
-        });
     </script>
 </body>
 </html>
