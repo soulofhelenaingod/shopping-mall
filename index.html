@@ -7,19 +7,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        /* ZABRÁNĚNÍ BÍLÉMU PROBLIKÁVÁNÍ */
-        html { background-color: #0f172a; }
+        /* ČERNÉ POZADÍ PRO JISTOTU (odstraněna původní modrá #0f172a) */
+        html { background-color: #000000; }
         
-        /* PLYNULÉ FIXNÍ POZADÍ - BEZ GRADIENTU */
+        /* PLYNULÉ FIXNÍ POZADÍ - ČISTÁ FOTKA BEZ FILTRU A GRADIENTU */
         body::before {
             content: "";
             position: fixed;
-            top: -10%; left: -10%;
-            width: 120vw; height: 120vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             z-index: -1;
             background-image: url('interier2.webp');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             pointer-events: none;
         }
 
@@ -63,9 +64,8 @@
 <body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0">
 
     <main class="max-w-7xl mx-auto px-4 py-8 w-full">
-        <!-- 3 SLOUPCE NA MOBILU, 5+ NA VĚTŠÍCH -->
+        <!-- ODSTRANĚN NAČÍTACÍ TEXT, ZŮSTÁVÁ JEN PRÁZDNÝ GRID PRO JAVASCRIPT -->
         <div id="grid-sfer" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-6 justify-items-center">
-            <div class="text-gray-500 animate-pulse col-span-full text-center">Inicializace asynchronní datové pipeline...</div>
         </div>
     </main>
 
