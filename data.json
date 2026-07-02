@@ -26,5 +26,5 @@
   { "id": 25, "type": "ALLEGRO BOX", "logo": "24allegro.webp", "link": "https://onedelivery.cz/mapa-boxu-a-vydejnich-mist", "tags": ["box", "posta"] },
   { "id": 26, "type": "GLS BOX", "logo": "25gls.webp", "link": "https://ps-maps.gls-czech.cz/?tdetail=2&p=hodonin&header=0&lng=cs", "tags": ["box", "posta"] },
   { "id": 27, "type": "PPL BOX", "logo": "26ppl.webp", "link": "https://www.ppl.cz/vydejni-mista/hodonin-masarykovo-namesti-16_4307977", "tags": ["box", "posta"] },
-  { "id": 28, "type": "SWR Shopping World Rohlenka", "logo": "27SWR.webp", "link": "https://iro.cz/", "tags": ["projekt", "externi"] }
+  { "id": 28, "type": "Shopping World Rohlenka", "logo": "27SWR.webp", "link": "https://iro.cz/", "tags": ["projekt", "externi"] }
 ]
