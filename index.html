@@ -10,15 +10,14 @@
         /* ZABRÁNĚNÍ BÍLÉMU PROBLIKÁVÁNÍ */
         html { background-color: #0f172a; }
         
-        /* PLYNULÉ FIXNÍ POZADÍ */
+        /* PLYNULÉ FIXNÍ POZADÍ - BEZ GRADIENTU */
         body::before {
             content: "";
             position: fixed;
             top: -10%; left: -10%;
             width: 120vw; height: 120vh;
             z-index: -1;
-            /* Změněno z 0.9 na 0.4 */
-            background-image: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.4)), url('interier2.webp');
+            background-image: url('interier2.webp');
             background-size: cover;
             background-position: center;
             pointer-events: none;
