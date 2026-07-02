@@ -7,17 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        /* ČERNÉ POZADÍ PRO JISTOTU (odstraněna původní modrá #0f172a) */
-        html { background-color: #000000; }
+        /* ZABRÁNĚNÍ BÍLÉMU PROBLIKÁVÁNÍ */
+        html { background-color: #0f172a; }
         
-        /* PLYNULÉ FIXNÍ POZADÍ - ČISTÁ FOTKA BEZ FILTRU A GRADIENTU */
+        /* PLYNULÉ FIXNÍ POZADÍ - 33% FILTR BEZ BLURU */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
             z-index: -1;
-            background-image: url('interier2.webp');
+            background-image: linear-gradient(rgba(15, 23, 42, 0.33), rgba(15, 23, 42, 0.33)), url('interier2.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
