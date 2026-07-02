@@ -10,6 +10,20 @@
         /* ZABRÁNĚNÍ BÍLÉMU PROBLIKÁVÁNÍ */
         html { background-color: #0f172a; }
 
+        /* PLYNULÉ FIXNÍ POZADÍ - MUTED INTERIOR */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -5%; left: -5%;
+            width: 110vw; height: 110vh;
+            z-index: -1;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(0, 0, 0, 0.95)), url('interier2.webp');
+            background-size: cover;
+            background-position: center;
+            filter: blur(6px);
+            pointer-events: none;
+        }
+
         .sphere-card {
             border-radius: 50%;
             aspect-ratio: 1 / 1;
@@ -47,7 +61,7 @@
         #grid-sfer > div:nth-child(28) .sphere-card { overflow: visible !important; }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-900 to-black text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0">
+<body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0">
 
     <main class="max-w-7xl mx-auto px-4 py-8 w-full">
         <!-- 3 SLOUPCE NA MOBILU, 5+ NA VĚTŠÍCH -->
