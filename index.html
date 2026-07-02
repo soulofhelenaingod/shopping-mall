@@ -1,125 +1,250 @@
 <!DOCTYPE html>
+
 <html lang="cs">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Obchodní Dům | Data-Driven Portal</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <style>
+
         /* ZABRÁNĚNÍ BÍLÉMU PROBLIKÁVÁNÍ */
+
         html { background-color: #0f172a; }
+
         
+
         /* PLYNULÉ FIXNÍ POZADÍ */
+
         body::before {
+
             content: "";
+
             position: fixed;
+
             top: -10%; left: -10%;
+
             width: 120vw; height: 120vh;
+
             z-index: -1;
+
             background-image: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('interier2.webp');
+
             background-size: cover;
+
             background-position: center;
+
             pointer-events: none;
+
         }
+
+
 
         .sphere-card {
+
             border-radius: 50%;
+
             aspect-ratio: 1 / 1;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             overflow: hidden;
+
             background: transparent;
+
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
         }
+
         .sphere-card:hover { transform: scale(1.1) translateY(-4px); }
+
         
+
         /* ZÁKLADNÍ VELIKOST A OŘEZ */
+
         .sphere-card img {
+
             width: 100%; height: 100%;
+
             object-fit: cover;
+
             object-position: center;
+
             transform: scale(1.23); 
+
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
         }
+
+
 
         /* OPRAVA ZOBRAZENÍ PRVNÍHO LOGA (NENÍ FILTROVÁNO) */
+
         #grid-sfer > div:nth-child(1) img { filter: none !important; opacity: 1 !important; }
 
+
+
         /* SPECIFICKÉ ÚPRAVY VELIKOSTÍ */
+
         #grid-sfer > div:nth-child(9) img { transform: scale(1.28); }
+
         #grid-sfer > div:nth-child(12) img { transform: scale(1.35); }
+
         #grid-sfer > div:nth-child(15) img { transform: scale(1.25); }
+
         #grid-sfer > div:nth-child(18) img { transform: scale(1.28); }
+
         #grid-sfer > div:nth-child(19) img { transform: scale(1.28); }
+
         #grid-sfer > div:nth-child(26) img { transform: scale(1.28); }
+
         #grid-sfer > div:nth-child(27) img { transform: scale(1.05); }
 
+
+
         /* VYCHYTÁVKA PRO SWR (28. LOGO) - POVOLENÍ PŘETEČENÍ TEXTU */
+
         #grid-sfer > div:nth-child(28) .sphere-card { overflow: visible !important; }
+
     </style>
+
 </head>
+
 <body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0">
 
+
+
     <main class="max-w-7xl mx-auto px-4 py-8 w-full">
+
         <!-- 3 SLOUPCE NA MOBILU, 5+ NA VĚTŠÍCH -->
+
         <div id="grid-sfer" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-6 justify-items-center">
+
             <div class="text-gray-500 animate-pulse col-span-full text-center">Inicializace asynchronní datové pipeline...</div>
+
         </div>
+
     </main>
 
+
+
     <script>
+
         async function fetchAndRenderGrid() {
+
             const gridContainer = document.getElementById('grid-sfer');
+
             try {
+
                 const response = await fetch('data.json');
+
                 if (!response.ok) throw new Error('Chyba při inicializaci síťového požadavku.');
+
                 
+
                 const prodejny = await response.json();
+
                 gridContainer.innerHTML = '';
 
+
+
                 prodejny.forEach(item => {
+
                     const wrapper = document.createElement('div');
+
                     wrapper.className = "flex flex-col items-center group w-20 sm:w-28 md:w-32";
+
                     let innerHTML = '';
+
                     
+
                     const imagePath = `assets/logos/${item.logo}`;
+
                     
+
                     if (item.isInternal) {
+
                         innerHTML = `<a href="${item.link}" class="sphere-card w-full"><img src="${imagePath}" alt="${item.type}" class="filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all"></a>`;
+
                     } else if (item.link) {
+
                         innerHTML = `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full"><img src="${imagePath}" alt="${item.type}"></a>`;
+
                     } else {
+
                         innerHTML = `<div class="sphere-card w-full opacity-40 cursor-default"><img src="${imagePath}" alt="${item.type}" class="grayscale"></div>`;
+
                     }
 
+
+
                     // PŘEVEDENO NA RED-800 PŘI HOVER
+
                     innerHTML += `
+
                         <span class="mt-1 text-[9px] sm:text-sm font-semibold tracking-wide text-gray-200 text-center uppercase group-hover:text-red-800 transition-colors duration-300 block w-full whitespace-normal break-words px-0.5 leading-tight" style="font-family: 'Inter', sans-serif; min-height: 2.5rem; display: flex; align-items: flex-start; justify-content: center;">
+
                             ${item.type}
+
                         </span>
+
                     `;
 
+
+
                     wrapper.innerHTML = innerHTML;
+
                     gridContainer.appendChild(wrapper);
+
                 });
+
             } catch (error) {
+
                 console.error('Data Pipeline Error:', error);
+
                 gridContainer.innerHTML = `<div class="text-red-400 col-span-full text-center">Chyba datového streamu: ${error.message}</div>`;
+
             }
+
         }
+
+
 
         document.addEventListener('DOMContentLoaded', fetchAndRenderGrid);
 
+
+
         // ZABEZPEČENÍ
+
         document.addEventListener('contextmenu', e => e.preventDefault());
+
         document.addEventListener('keydown', e => {
+
             if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
+
                 e.preventDefault();
+
                 return false;
+
             }
+
         });
+
     </script>
+
 </body>
-</html>
+
+</html> 
+
