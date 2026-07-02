@@ -86,12 +86,13 @@
                     
                     const imagePath = `assets/logos/${item.logo}`;
                     
+                    // PŘIDÁNO ZABEZPEČENÍ OBRÁZKŮ: pointer-events-none select-none draggable="false"
                     if (item.isInternal) {
-                        innerHTML = `<a href="${item.link}" class="sphere-card w-full"><img src="${imagePath}" alt="${item.type}" class="filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all"></a>`;
+                        innerHTML = `<a href="${item.link}" class="sphere-card w-full"><img src="${imagePath}" alt="${item.type}" class="filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all pointer-events-none select-none" draggable="false"></a>`;
                     } else if (item.link) {
-                        innerHTML = `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="sphere-card w-full"><img src="${imagePath}" alt="${item.type}"></a>`;
+                        innerHTML = `<a href="${item.link}" class="sphere-card w-full"><img src="${imagePath}" alt="${item.type}" class="pointer-events-none select-none" draggable="false"></a>`;
                     } else {
-                        innerHTML = `<div class="sphere-card w-full opacity-40 cursor-default"><img src="${imagePath}" alt="${item.type}" class="grayscale"></div>`;
+                        innerHTML = `<div class="sphere-card w-full opacity-40 cursor-default"><img src="${imagePath}" alt="${item.type}" class="grayscale pointer-events-none select-none" draggable="false"></div>`;
                     }
 
                     // PŘEVEDENO NA RED-800 PŘI HOVER
