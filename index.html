@@ -61,15 +61,50 @@
         #grid-sfer > div:nth-child(28) .sphere-card { overflow: visible !important; }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0">
+<body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0 relative">
+
+    <!-- AUDIO STREAM (NEVIDITELNÝ PŘEHRÁVAČ) -->
+    <audio id="bg-radio" src="https://stream.zeno.fm/f3wvbbqmdg8uv" preload="none"></audio>
+
+    <!-- PLOVOUCÍ TLAČÍTKO PRO RÁDIO -->
+    <button id="radio-toggle" class="fixed bottom-6 right-6 bg-slate-800/60 hover:bg-slate-700/80 backdrop-blur-md border border-slate-600/50 text-gray-200 p-3.5 rounded-full shadow-xl transition-all z-50 group flex items-center justify-center" aria-label="Přehrát rádio">
+        <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 ml-0.5">
+            <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
+        </svg>
+        <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 hidden">
+            <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75V5.25Zm7.5 0A.75.75 0 0 1 15 4.5h1.5a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H15a.75.75 0 0 1-.75-.75V5.25Z" clip-rule="evenodd" />
+        </svg>
+    </button>
 
     <main class="max-w-7xl mx-auto px-4 py-8 w-full">
-        <!-- ODSTRANĚN NAČÍTACÍ TEXT, ZŮSTÁVÁ JEN PRÁZDNÝ GRID PRO JAVASCRIPT -->
         <div id="grid-sfer" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-6 justify-items-center">
         </div>
     </main>
 
     <script>
+        // --- LOGIKA RÁDIA ---
+        const audioPlayer = document.getElementById('bg-radio');
+        const radioBtn = document.getElementById('radio-toggle');
+        const iconPlay = document.getElementById('icon-play');
+        const iconPause = document.getElementById('icon-pause');
+        
+        // Nastavení podkresové hlasitosti (0.3 = 30%)
+        audioPlayer.volume = 0.3;
+
+        radioBtn.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                iconPlay.classList.add('hidden');
+                iconPause.classList.remove('hidden');
+            } else {
+                audioPlayer.pause();
+                iconPause.classList.add('hidden');
+                iconPlay.classList.remove('hidden');
+            }
+        });
+
+
+        // --- LOGIKA DAT GRIDU ---
         async function fetchAndRenderGrid() {
             const gridContainer = document.getElementById('grid-sfer');
             try {
@@ -86,7 +121,6 @@
                     
                     const imagePath = `assets/logos/${item.logo}`;
                     
-                    // PŘIDÁNO ZABEZPEČENÍ OBRÁZKŮ A ODKAZY VE STEJNÉM OKNĚ
                     if (item.isInternal) {
                         innerHTML = `<a href="${item.link}" class="sphere-card w-full"><img src="${imagePath}" alt="${item.type}" class="filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all pointer-events-none select-none" draggable="false"></a>`;
                     } else if (item.link) {
@@ -95,7 +129,6 @@
                         innerHTML = `<div class="sphere-card w-full opacity-40 cursor-default"><img src="${imagePath}" alt="${item.type}" class="grayscale pointer-events-none select-none" draggable="false"></div>`;
                     }
 
-                    // PŘEVEDENO NA RED-800 PŘI HOVER
                     innerHTML += `
                         <span class="mt-1 text-[9px] sm:text-sm font-semibold tracking-wide text-gray-200 text-center uppercase group-hover:text-red-800 transition-colors duration-300 block w-full whitespace-normal break-words px-0.5 leading-tight" style="font-family: 'Inter', sans-serif; min-height: 2.5rem; display: flex; align-items: flex-start; justify-content: center;">
                             ${item.type}
@@ -113,7 +146,7 @@
 
         document.addEventListener('DOMContentLoaded', fetchAndRenderGrid);
 
-        // ZABEZPEČENÍ
+        // --- ZABEZPEČENÍ ---
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
             if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
