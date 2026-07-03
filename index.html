@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obchodní Dům | Data-Driven Portal</title>
     
-    <!-- Aktualizovaná favicona z kořenové složky -->
     <link rel="icon" type="image/webp" href="rubyonrailsplus.webp">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Tailwind s defer pro hladší start -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography" defer></script>
+    
     <style>
         html { background-color: #0f172a; }
         body::before {
@@ -21,9 +22,11 @@
             background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('interier2.webp');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             pointer-events: none;
         }
+        /* Zajištění konzistentní výšky gridu */
+        #grid-sfer { min-height: 400px; }
+        
         .sphere-card {
             border-radius: 50%;
             aspect-ratio: 1 / 1;
@@ -38,158 +41,82 @@
         .sphere-card img {
             width: 100%; height: 100%;
             object-fit: cover;
-            object-position: center;
-            transform: scale(1.23); 
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1.23);
         }
         
-        /* --- 3D RUBÍNOVÉ TLAČÍTKO --- */
         .ruby-sphere {
             border-radius: 50%;
-            border: 2px solid #fbbf24; 
+            border: 2px solid #fbbf24;
             background: radial-gradient(circle at 35% 25%, #fca5a5 0%, #ef4444 20%, #991b1b 60%, #450a0a 100%);
-            box-shadow: 
-                inset -5px -5px 15px rgba(0, 0, 0, 0.8), 
-                inset 5px 5px 10px rgba(255, 255, 255, 0.4), 
-                0 0 0 2px #b45309,
-                0 10px 20px rgba(0, 0, 0, 0.6);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            /* ZDE BYLA CHYBA (position: relative), KTERÁ ROZBILA ROZLOŽENÍ - ODSTRANĚNO */
+            box-shadow: inset -5px -5px 15px rgba(0, 0, 0, 0.8), 0 10px 20px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
         }
-        
-        /* Bílý skleněný odlesk na horní straně rubínu */
-        .ruby-sphere::after {
-            content: '';
-            position: absolute;
-            top: 8%;
-            left: 18%;
-            width: 45%;
-            height: 25%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
-            border-radius: 50%;
-            transform: rotate(-15deg);
-            pointer-events: none;
-        }
-
-        .ruby-sphere:hover {
-            transform: scale(1.1) translateY(-2px);
-            box-shadow: 
-                inset -5px -5px 15px rgba(0, 0, 0, 0.8), 
-                inset 5px 5px 10px rgba(255, 255, 255, 0.5), 
-                0 0 0 2px #b45309,
-                0 12px 25px rgba(0, 0, 0, 0.7),
-                0 0 20px rgba(251, 191, 36, 0.4); 
-        }
-
-        /* Aktivní stav (Když hudba hraje) */
-        .ruby-sphere.playing {
-            background: radial-gradient(circle at 35% 25%, #fecaca 0%, #f87171 25%, #b91c1c 65%, #7f1d1d 100%);
-            box-shadow: 
-                inset -5px -5px 15px rgba(0, 0, 0, 0.7), 
-                inset 5px 5px 10px rgba(255, 255, 255, 0.6), 
-                0 0 0 2px #b45309,
-                0 0 30px rgba(239, 68, 68, 0.7), 
-                0 0 15px rgba(251, 191, 36, 0.8); 
-            border-color: #fde047; 
-        }
-
-        .ruby-sphere svg {
-            position: relative;
-            z-index: 10;
-        }
-
-        #grid-sfer > div:nth-child(1) img { filter: none !important; opacity: 1 !important; }
-        #grid-sfer > div:nth-child(9) img { transform: scale(1.28); }
-        #grid-sfer > div:nth-child(12) img { transform: scale(1.35); }
-        #grid-sfer > div:nth-child(15) img { transform: scale(1.25); }
-        #grid-sfer > div:nth-child(18) img { transform: scale(1.28); }
-        #grid-sfer > div:nth-child(19) img { transform: scale(1.28); }
-        #grid-sfer > div:nth-child(26) img { transform: scale(1.28); }
-        #grid-sfer > div:nth-child(27) img { transform: scale(1.05); }
-        #grid-sfer > div:nth-child(28) .sphere-card { overflow: visible !important; }
+        .ruby-sphere.playing { box-shadow: 0 0 30px rgba(239, 68, 68, 0.7), 0 0 15px rgba(251, 191, 36, 0.8); }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0 relative">
+<body class="text-gray-100 min-h-screen flex flex-col justify-between m-0 p-0">
 
     <audio id="bg-radio" src="https://stream.zeno.fm/f3wvbbqmdg8uv" preload="none"></audio>
 
-    <!-- 3D RUBÍNOVÉ TLAČÍTKO -->
     <button id="radio-toggle" class="ruby-sphere fixed bottom-8 right-8 w-16 h-16 z-[100] flex items-center justify-center cursor-pointer">
-        
-        <!-- IKONA: VYPNOUTO (Reproduktor s křížkem) -->
-        <svg id="icon-muted" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="w-8 h-8 text-white opacity-90 transition-opacity duration-300">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.5c-.88 0-1.6-.72-1.6-1.6V9.85c0-.88.72-1.6 1.6-1.6h2.25z" />
-        </svg>
-
-        <!-- IKONA: HRAJE (Reproduktor s vlnami, zlatá záře) -->
-        <svg id="icon-playing" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8 text-[#fbbf24] hidden transition-opacity duration-300 drop-shadow-[0_0_6px_rgba(251,191,36,1)]">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.5c-.88 0-1.6-.72-1.6-1.6V9.85c0-.88.72-1.6 1.6-1.6h2.25Z" />
-        </svg>
-
+        <svg id="icon-muted" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="w-8 h-8 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.5c-.88 0-1.6-.72-1.6-1.6V9.85c0-.88.72-1.6 1.6-1.6h2.25z" /></svg>
+        <svg id="icon-playing" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8 text-[#fbbf24] hidden"><path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.5c-.88 0-1.6-.72-1.6-1.6V9.85c0-.88.72-1.6 1.6-1.6h2.25Z" /></svg>
     </button>
 
     <main class="max-w-7xl mx-auto px-4 py-8 w-full">
+        <!-- Zde je loading state -->
         <div id="grid-sfer" class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-6 justify-items-center">
+            <p class="col-span-full text-center py-20 text-gray-400 animate-pulse">Načítám data...</p>
         </div>
     </main>
 
     <script>
         const audioPlayer = document.getElementById('bg-radio');
         const radioBtn = document.getElementById('radio-toggle');
-        const iconMuted = document.getElementById('icon-muted');
-        const iconPlaying = document.getElementById('icon-playing');
-        
-        audioPlayer.volume = 0.3;
+        const gridContainer = document.getElementById('grid-sfer');
 
         radioBtn.addEventListener('click', () => {
             if (audioPlayer.paused) {
                 audioPlayer.play();
                 radioBtn.classList.add('playing');
-                iconMuted.classList.add('hidden');
-                iconPlaying.classList.remove('hidden');
+                document.getElementById('icon-muted').classList.add('hidden');
+                document.getElementById('icon-playing').classList.remove('hidden');
             } else {
                 audioPlayer.pause();
                 radioBtn.classList.remove('playing');
-                iconPlaying.classList.add('hidden');
-                iconMuted.classList.remove('hidden');
+                document.getElementById('icon-playing').classList.add('hidden');
+                document.getElementById('icon-muted').classList.remove('hidden');
             }
         });
 
         async function fetchAndRenderGrid() {
-            const gridContainer = document.getElementById('grid-sfer');
             try {
                 const response = await fetch('data.json');
+                if (!response.ok) throw new Error('Data nedostupná');
                 const prodejny = await response.json();
+                
                 gridContainer.innerHTML = '';
                 prodejny.forEach(item => {
                     const wrapper = document.createElement('div');
-                    wrapper.className = "flex flex-col items-center group w-20 sm:w-28 md:w-32";
-                    let innerHTML = '';
-                    const imagePath = `assets/logos/${item.logo}`;
+                    wrapper.className = "flex flex-col items-center group w-20 sm:w-28";
                     
-                    if (item.isInternal) {
-                        innerHTML = `<a href="${item.link}" class="sphere-card w-full"><img src="${imagePath}" alt="${item.type}" class="filter brightness-0 invert opacity-80 group-hover:opacity-100 transition-all pointer-events-none select-none" draggable="false"></a>`;
-                    } else if (item.link) {
-                        innerHTML = `<a href="${item.link}" class="sphere-card w-full"><img src="${imagePath}" alt="${item.type}" class="pointer-events-none select-none" draggable="false"></a>`;
-                    } else {
-                        innerHTML = `<div class="sphere-card w-full opacity-40 cursor-default"><img src="${imagePath}" alt="${item.type}" class="grayscale pointer-events-none select-none" draggable="false"></div>`;
-                    }
-
-                    innerHTML += `<span class="mt-1 text-[9px] sm:text-sm font-semibold tracking-wide text-gray-200 text-center uppercase group-hover:text-[#CFFF04] transition-colors duration-300 block w-full whitespace-normal break-words px-0.5 leading-tight" style="font-family: 'Inter', sans-serif; min-height: 2.5rem; display: flex; align-items: flex-start; justify-content: center;">${item.type}</span>`;
-                    wrapper.innerHTML = innerHTML;
+                    const imgTag = `<img src="assets/logos/${item.logo}" alt="${item.type}" loading="lazy" class="pointer-events-none" draggable="false">`;
+                    
+                    wrapper.innerHTML = `
+                        <a href="${item.link || '#'}" class="sphere-card w-full ${item.isInternal ? '' : ''}">
+                            ${imgTag}
+                        </a>
+                        <span class="mt-1 text-[9px] sm:text-sm font-semibold uppercase text-gray-200 text-center">${item.type}</span>
+                    `;
                     gridContainer.appendChild(wrapper);
                 });
-            } catch (error) { console.error(error); }
+            } catch (error) {
+                gridContainer.innerHTML = `<p class="col-span-full text-red-400">Chyba při načítání dat. Zkuste to prosím později.</p>`;
+                console.error(error);
+            }
         }
 
-        document.addEventListener('DOMContentLoaded', fetchAndRenderGrid);
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', e => {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
-                e.preventDefault();
-                return false;
-            }
-        });
+        window.addEventListener('DOMContentLoaded', fetchAndRenderGrid);
     </script>
 </body>
 </html>
