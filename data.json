@@ -9,7 +9,7 @@
   { "id": 8, "type": "SOLÁRIUM", "logo": "7puresun.webp", "link": "https://puresun.cz/hodonin/", "tags": ["sluzby", "krasa"] },
   { "id": 9, "type": "NEHTY & KRÁSA", "logo": "8moon.webp", "link": "https://www.facebook.com/people/Moon-Nails-Ateli%C3%A9r/61573249224680/", "tags": ["sluzby", "krasa"] },
   { "id": 10, "type": "ŠPERKY & BIŽUTERIE", "logo": "9sperky.webp", "link": "", "tags": ["nakupy", "moda"] },
-  { "id": 11, "type": "DĚTSKÁ MÓDA", "logo": "10calzanatta.webp", "link": "https://www.instagram.com/calzanatta?igsh=bGo2c3I2cmxzbmVh", "tags": ["obleceni", "deti"] },
+  { "id": 11, "type": "MÓDA", "logo": "10calzanatta.webp", "link": "https://www.instagram.com/calzanatta?igsh=bGo2c3I2cmxzbmVh", "tags": ["obleceni", "deti"] },
   { "id": 12, "type": "MÓDA", "logo": "11_vigoss_jossi.webp", "link": "https://www.vigossjeans.cz/", "tags": ["obleceni", "dospeli"] },
   { "id": 13, "type": "MÓDA", "logo": "12coccodrillo.webp", "link": "https://cz.coccodrillo.eu/", "tags": ["obleceni", "deti"] },
   { "id": 14, "type": "ADVOKÁTNÍ KANCELÁŘ", "logo": "13advokatevzenmoravek.webp", "link": "", "tags": ["sluzby", "pravo"] },
