@@ -135,7 +135,8 @@
         const iconPlaying = document.getElementById('icon-playing');
         
         const playlist = Array.from({ length: 21 }, (_, i) => `music/${i + 1}.mp3`);
-        let currentTrack = 0;
+        // Nastavení náhodné výchozí skladby při každém načtení stránky
+        let currentTrack = Math.floor(Math.random() * playlist.length);
         audioPlayer.volume = 0.3;
 
         function playTrack(index) {
