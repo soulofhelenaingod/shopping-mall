@@ -109,10 +109,17 @@
 </head>
 <body class="text-gray-100 min-h-screen font-sans flex flex-col justify-between m-0 p-0 relative">
 
-    <!-- ZMĚNA ZDE: Použijte lokální soubor a přidejte loop pro smyčku -->
-    <audio id="bg-radio" src="royalty-free-hudba.mp3" loop preload="none"></audio>
+    <!-- AUDIO ELEMENT (Zdroj nastavuje JS automaticky ze složky music) -->
+    <audio id="bg-radio" preload="none"></audio>
 
-    <!-- 3D RUBÍNOVÉ TLAČÍTKO -->
+    <!-- TLAČÍTKO PRO DALŠÍ SKLADBU (Skryté, zobrazí se jen když hraje hudba) -->
+    <button id="next-track" class="fixed bottom-10 right-28 w-12 h-12 z-[100] hidden items-center justify-center rounded-full border-2 border-[#fbbf24] bg-gray-900/80 backdrop-blur text-white hover:bg-gray-800 hover:scale-110 transition-all duration-300 shadow-[0_0_10px_rgba(251,191,36,0.3)] cursor-pointer" title="Další skladba">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#fbbf24" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z" />
+        </svg>
+    </button>
+
+    <!-- HLAVNÍ 3D RUBÍNOVÉ TLAČÍTKO -->
     <button id="radio-toggle" class="ruby-sphere fixed bottom-8 right-8 w-16 h-16 z-[100] flex items-center justify-center cursor-pointer">
         
         <!-- IKONA: VYPNOUTO (Reproduktor s křížkem) -->
@@ -135,23 +142,65 @@
     <script>
         const audioPlayer = document.getElementById('bg-radio');
         const radioBtn = document.getElementById('radio-toggle');
+        const nextBtn = document.getElementById('next-track');
         const iconMuted = document.getElementById('icon-muted');
         const iconPlaying = document.getElementById('icon-playing');
         
+        // Playlist definice podle složky na GitHubu
+        const playlist = [
+            'music/1.mp3',
+            'music/2.mp3',
+            'music/3.mp3',
+            'music/4.mp3'
+        ];
+        let currentTrack = 0;
+        
         audioPlayer.volume = 0.3;
 
+        // Funkce pro načtení a spuštění konkrétní skladby
+        function playTrack(index) {
+            audioPlayer.src = playlist[index];
+            audioPlayer.play();
+        }
+
+        // Automatické přepnutí na další skladbu, když aktuální skončí
+        audioPlayer.addEventListener('ended', () => {
+            currentTrack = (currentTrack + 1) % playlist.length;
+            playTrack(currentTrack);
+        });
+
+        // Hlavní tlačítko: Přepínač Play/Pause
         radioBtn.addEventListener('click', () => {
             if (audioPlayer.paused) {
-                audioPlayer.play();
+                // Pokud ještě není načtena žádná skladba, pusť první
+                if (!audioPlayer.src || audioPlayer.src === window.location.href) {
+                    playTrack(currentTrack);
+                } else {
+                    audioPlayer.play();
+                }
                 radioBtn.classList.add('playing');
                 iconMuted.classList.add('hidden');
                 iconPlaying.classList.remove('hidden');
+                
+                // Zobrazit tlačítko "Další"
+                nextBtn.classList.remove('hidden');
+                nextBtn.classList.add('flex');
             } else {
                 audioPlayer.pause();
                 radioBtn.classList.remove('playing');
                 iconPlaying.classList.add('hidden');
                 iconMuted.classList.remove('hidden');
+                
+                // Skrýt tlačítko "Další"
+                nextBtn.classList.add('hidden');
+                nextBtn.classList.remove('flex');
             }
+        });
+
+        // Tlačítko pro manuální přeskočení na další skladbu
+        nextBtn.addEventListener('click', () => {
+            currentTrack = (currentTrack + 1) % playlist.length;
+            playTrack(currentTrack);
         });
 
         async function fetchAndRenderGrid() {
