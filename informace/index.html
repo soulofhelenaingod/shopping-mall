@@ -1,13 +1,3 @@
-Ano, rychlost načítání lze výrazně zvýšit pomocí takzvaného **Lazy Loadingu** (odloženého načítání) a **Preloadingu** (přednačtení hlavní priority).
-
-Provedl jsem tyto úpravy:
-
-1. Do hlavičky (`<head>`) jsem přidal `<link rel="preload">` pro obrázek pozadí. Prohlížeč ho tak začne stahovat okamžitě, aniž by čekal na zpracování CSS.
-2. Prvnímu viditelnému obrázku v prvním kolotoči jsem dal atribut `fetchpriority="high"`.
-3. Všem ostatním obrázkům (které jsou na začátku skryté nebo níže na stránce) jsem přidal atribut `loading="lazy"`. Prohlížeč je začne stahovat až ve chvíli, kdy k nim uživatel doskroluje nebo přepne obrázek, což extrémně zrychlí úvodní načtení stránky.
-
-Zde je plně upravený kód:
-
 ```html
 <!DOCTYPE html>
 <html lang="cs">
