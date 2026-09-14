@@ -9,6 +9,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ShoppingCenter",
+      "name": "Obchodní Dům iRO",
+      "url": "https://odiro.cz",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Masarykovo náměstí",
+        "addressLocality": "Hodonín",
+        "postalCode": "69501",
+        "addressCountry": "CZ"
+      }
+    }
+    </script>
+    
     <style>
         html { background-color: #0f172a; }
         body::before {
@@ -135,7 +151,6 @@
         const iconPlaying = document.getElementById('icon-playing');
         
         const playlist = Array.from({ length: 21 }, (_, i) => `music/${i + 1}.mp3`);
-        // Nastavení náhodné výchozí skladby při každém načtení stránky
         let currentTrack = Math.floor(Math.random() * playlist.length);
         audioPlayer.volume = 0.3;
 
