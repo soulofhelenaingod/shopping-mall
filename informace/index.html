@@ -53,6 +53,10 @@
                     <img src="../assets/informace/interier/interier2.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 2" loading="lazy" decoding="async">
                     <img src="../assets/informace/interier/interier3.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 3" loading="lazy" decoding="async">
                     <img src="../assets/informace/interier/interier4.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 4" loading="lazy" decoding="async">
+                    <img src="../assets/informace/interier/interier5.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 5" loading="lazy" decoding="async">
+                    <img src="../assets/informace/interier/interier6.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 6" loading="lazy" decoding="async">
+                    <img src="../assets/informace/interier/interier7.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 7" loading="lazy" decoding="async">
+                    <img src="../assets/informace/interier/interier8.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Interiér 8" loading="lazy" decoding="async">
                 </div>
 
                 <button onclick="scrollInfinite('carousel-interier', 1)" class="absolute right-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-l from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-end pr-2 sm:pr-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10095;</button>
@@ -119,6 +123,13 @@
                 container.insertBefore(lastChild, container.firstElementChild);
             }
         }
+
+        // Automatické přepínání po 3 vteřinách pro všechny karusely
+        ['carousel-interier', 'carousel-1', 'carousel-2'].forEach(id => {
+            setInterval(() => {
+                scrollInfinite(id, 1);
+            }, 3000);
+        });
 
         document.querySelectorAll('.swipe-carousel').forEach(carousel => {
             let startX = 0;
