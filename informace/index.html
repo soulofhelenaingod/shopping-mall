@@ -1,3 +1,6 @@
+Zde je kompletní upravený kód obsahující všech 8 fotek interiéru, automatické přepínání po 3 vteřinách s pozastavením při najetí myši/dotyku, klikací telefonní čísla s mírně zvětšeným fontem, OpenGraph meta tagy a bez tečkových indikátorů:
+
+```html
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -8,6 +11,12 @@
     <link rel="icon" type="image/webp" href="../rubyonrailsplus.webp">
     <link rel="preload" as="image" href="../assets/informace/interier/interier1.webp">
     
+    <!-- OpenGraph meta tagy -->
+    <meta property="og:title" content="K pronájmu - Obchodní dům iRO Hodonín">
+    <meta property="og:description" content="Nabídka pronájmu prostor v Obchodním domě iRO v Hodoníně. Otevírací doba PO-NE 07:00 - 20:00.">
+    <meta property="og:image" content="../assets/informace/interier/interier1.webp">
+    <meta property="og:type" content="website">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -45,7 +54,7 @@
                 OTEVÍRACÍ DOBA PONDĚLÍ - NEDĚLE 07:00 - 20:00
             </h1>
             
-            <div class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
+            <div id="wrapper-carousel-interier" class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
                 <button onclick="scrollInfinite('carousel-interier', -1)" class="absolute left-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-r from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-start pl-2 sm:pl-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10094;</button>
                 
                 <div id="carousel-interier" class="swipe-carousel flex overflow-hidden touch-pan-y">
@@ -64,9 +73,9 @@
 
             <div class="space-y-1 text-sm sm:text-base text-gray-300 text-shadow mt-4">
                 <p><span class="font-semibold text-gray-100">Adresa:</span> Obchodní domy iRO, a.s., Masarykovo náměstí 257/16 695 01 Hodonín</p>
-                <p><span class="font-semibold text-gray-100">Mobilní spojení:</span> +420 602 508 278, +420 602 522 023</p>
+                <p><span class="font-semibold text-gray-100">Mobilní spojení:</span> <a href="tel:+420602508278" class="text-base sm:text-lg font-semibold text-neon hover:underline">+420 602 508 278</a>, <a href="tel:+420602522023" class="text-base sm:text-lg font-semibold text-neon hover:underline">+420 602 522 023</a></p>
                 <p><span class="font-semibold text-gray-100">Datová schránka:</span> k4cff37 &nbsp;|&nbsp; <span class="font-semibold text-gray-100">IČ:</span> 25587463 &nbsp;|&nbsp; <span class="font-semibold text-gray-100">DIČ:</span> CZ25587463</p>
-                <p><span class="font-semibold text-gray-100">E-mail:</span> <a href="mailto:obchodnidumiro@seznam.cz" class="hover:text-red-800 transition-colors">obchodnidumiro@seznam.cz</a><br>
+                <p><span class="font-semibold text-gray-100">E-mail:</span> <a href="mailto:obchodnidumiro@seznam.cz" class="text-base sm:text-lg text-neon hover:underline">obchodnidumiro@seznam.cz</a><br>
                 <span class="font-semibold text-gray-100">Web:</span> <a href="http://www.obchodnidumiro.cz" target="_blank" class="hover:text-red-800 transition-colors">www.obchodnidumiro.cz</a>, <a href="http://www.odiro.cz" target="_blank" class="hover:text-red-800 transition-colors">www.odiro.cz</a></p>
             </div>
         </section>
@@ -75,8 +84,8 @@
             <h2 class="text-center text-2xl sm:text-3xl font-semibold tracking-widest text-neon uppercase text-shadow">K PRONÁJMU</h2>
 
             <div>
-                <h3 class="text-center text-base sm:text-lg font-medium tracking-wide text-neon uppercase text-shadow mb-2">V PŘÍZEMÍ 12 m² (+420 602 508 278)</h3>
-                <div class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
+                <h3 class="text-center text-base sm:text-lg font-medium tracking-wide text-neon uppercase text-shadow mb-2">V PŘÍZEMÍ 12 m² (<a href="tel:+420602508278" class="hover:underline">+420 602 508 278</a>)</h3>
+                <div id="wrapper-carousel-1" class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
                     <button onclick="scrollInfinite('carousel-1', -1)" class="absolute left-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-r from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-start pl-2 sm:pl-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10094;</button>
                     <div id="carousel-1" class="swipe-carousel flex overflow-hidden touch-pan-y">
                         <img src="../assets/informace/kpronajmu/12m2/1.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1" loading="lazy" decoding="async">
@@ -89,8 +98,8 @@
             </div>
 
             <div class="mt-8">
-                <h3 class="text-center text-base sm:text-lg font-medium tracking-wide text-neon uppercase text-shadow mb-2">SKLEPNÍ 210 m² (+420 602 508 278)</h3>
-                <div class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
+                <h3 class="text-center text-base sm:text-lg font-medium tracking-wide text-neon uppercase text-shadow mb-2">SKLEPNÍ 210 m² (<a href="tel:+420602508278" class="hover:underline">+420 602 508 278</a>)</h3>
+                <div id="wrapper-carousel-2" class="relative w-full max-w-full mx-auto group overflow-hidden rounded-xl border border-slate-700/50 shadow-2xl">
                     <button onclick="scrollInfinite('carousel-2', -1)" class="absolute left-0 top-0 h-full w-20 sm:w-28 z-10 bg-gradient-to-r from-[#CFFF04]/40 to-transparent hover:from-[#CFFF04]/60 text-neon text-6xl sm:text-8xl font-bold transition flex items-center justify-start pl-2 sm:pl-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">&#10094;</button>
                     <div id="carousel-2" class="swipe-carousel flex overflow-hidden touch-pan-y">
                         <img src="../assets/informace/kpronajmu/210m2/1_210.webp" class="w-full flex-shrink-0 object-cover aspect-video bg-slate-900" alt="Prostor 1" loading="lazy" decoding="async">
@@ -124,11 +133,30 @@
             }
         }
 
-        // Automatické přepínání po 3 vteřinách pro všechny karusely
+        // Automatické přepínání s podporou pauzy při najetí myši
+        const intervals = {};
+
         ['carousel-interier', 'carousel-1', 'carousel-2'].forEach(id => {
-            setInterval(() => {
-                scrollInfinite(id, 1);
-            }, 3000);
+            const wrapper = document.getElementById('wrapper-' + id);
+
+            function startAutoplay() {
+                intervals[id] = setInterval(() => {
+                    scrollInfinite(id, 1);
+                }, 3000);
+            }
+
+            function stopAutoplay() {
+                clearInterval(intervals[id]);
+            }
+
+            startAutoplay();
+
+            wrapper.addEventListener('mouseenter', stopAutoplay);
+            wrapper.addEventListener('mouseleave', startAutoplay);
+            wrapper.addEventListener('touchstart', stopAutoplay, { passive: true });
+            wrapper.addEventListener('touchend', () => {
+                setTimeout(startAutoplay, 4000);
+            }, { passive: true });
         });
 
         document.querySelectorAll('.swipe-carousel').forEach(carousel => {
@@ -151,3 +179,5 @@
     </script>
 </body>
 </html>
+
+```
